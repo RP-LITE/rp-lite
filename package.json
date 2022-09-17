@@ -1,0 +1,21 @@
+{
+  "name": "rp-lite",
+  "version": "1.0.0",
+  "description": "<div id=\"top\"></div> <span align=\"center\">",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RP-LITE/rp-lite.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RP-LITE/rp-lite/issues"
+  },
+  "homepage": "https://github.com/RP-LITE/rp-lite#readme"
+}
