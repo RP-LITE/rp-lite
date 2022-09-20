@@ -4,6 +4,8 @@ const session = require("express-session");
 const { auth } = require('express-openid-connect');
 const exphbs = require("express-handlebars");
 const routes = require("./controllers");
+const sequelize = require('./config/connection');
+
 // const helpers = require("./utils/helpers");
 
 // const sequelize = require("./config/connection");
@@ -17,7 +19,7 @@ const PORT = process.env.PORT || 3001;
 const config = {
   authRequired: false,
   auth0Logout: true,
-  secret: '!8mTcu1xDDBsOpyTnMxI;q/lnKJ>J0vgTzk[PqEcKCAX-:p3f3W?6kE8PBT:$k=p1',
+  secret: process.env.SERVER_SECRET,// Put in your .env file
   baseURL: 'http://localhost:3001',
   clientID: 'pgxhXkOq7ovZ0mAD11rcT5dPtpU2vMmU',
   issuerBaseURL: 'https://dev-oomhbcoc.us.auth0.com'
@@ -59,6 +61,6 @@ app.get('/', (req, res) => {
 
 // app.use(routes);
 
-// sequelize.sync({ force: false }).then(() => {
+sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log("Now listening"));
-// });
+});
