@@ -2,11 +2,8 @@ const path = require("path");
 const express = require("express");
 const session = require("express-session");
 const { auth } = require('express-openid-connect');
-
 const exphbs = require("express-handlebars");
 const routes = require("./controllers");
-
-const protected = require('./controllers');
 // const helpers = require("./utils/helpers");
 
 // const sequelize = require("./config/connection");
@@ -42,12 +39,14 @@ const config = {
 // };
 
 app.use(auth(config));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use(routes);
 
 app.get('/', (req, res) => {
   res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
 });
-
-app.use('/',protected);
 
 // app.use(session(sess));
 
