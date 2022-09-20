@@ -1,7 +1,7 @@
 const http = require('http');
 const https = require('https');
 const { Server } = require('socket.io');
-
+// This code adapted from https://socket.io/how-to/use-with-express-session
 /**
  * Converts the session middleware to io middleware
  * @param {Session} middleware - The session middleware
@@ -31,6 +31,8 @@ const createIoInterface = (app,session) => {
     }
   });
   io.on('connection',function(socket){
+    const userID = socket.request.session.user_id;
+
     // TODO: Need to connect the socket and user information
     console.log('user connected');
   });
