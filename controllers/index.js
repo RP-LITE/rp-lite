@@ -1,4 +1,5 @@
-module.exports = {
-  protected: require('./protectedroutes'),
-  home: require('./homeroutes')
-}
+const router = require('express').Router();
+const protectedRoutes = require('./protectedroutes');
+
+router.use('/',protectedRoutes);
+module.exports = router;
