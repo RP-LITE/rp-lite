@@ -3,10 +3,10 @@ const express = require("express");
 const session = require("express-session");
 const exphbs = require("express-handlebars");
 const routes = require("./controllers");
-const sequelize = require('./config/connection');
-const http = require('http');
-const https = require('https');
-const { Server } = require('socket.io');
+const sequelize = require("./config/connection");
+const http = require("http");
+const https = require("https");
+const { Server } = require("socket.io");
 
 const helpers = require("./utils/helper");
 
@@ -23,16 +23,16 @@ const hbs = exphbs.create({ helpers });
 
 const server = httpType.createServer(app);
 const io = new Server(server);
-app.set('clients', []);
+app.set("clients", []);
 // Store reference to io in the app for use in routes.
-app.set('io',io);
-console.log('clients',app.get('clients'));
-io.on('connection',(socket)=>{
-  const clients = app.get('clients');
-  clients.push({socket});
-  console.log(clients.map(o=>o.socket.id));
-  app.set('clients',clients);
-  socket.emit('testEvent',{key:'value',key2:'value2'});
+app.set("io", io);
+console.log("clients", app.get("clients"));
+io.on("connection", (socket) => {
+  const clients = app.get("clients");
+  clients.push({ socket });
+  console.log(clients.map((o) => o.socket.id));
+  app.set("clients", clients);
+  socket.emit("testEvent", { key: "value", key2: "value2" });
 });
 // const hbs = exphbs.create({ helpers });
 // const config = {
@@ -59,14 +59,13 @@ const sess = {
   }),
 };
 
-app.use(express.static('public'));
+app.use(express.static("public"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(session(sess));
 
 app.engine("handlebars", hbs.engine);
 app.set("view engine", "handlebars");
-
-
 
 app.use(routes);
 
@@ -75,9 +74,9 @@ app.use(routes);
 //   res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
 // });
 
-// app.use(session(sess));
-
 sequelize.sync({ force: false }).then(() => {
   // have socket.io and express listen
-  server.listen(PORT, () => console.log(`Now listening at http://localhost:${PORT}`));
+  server.listen(PORT, () =>
+    console.log(`Now listening at http://localhost:${PORT}`)
+  );
 });

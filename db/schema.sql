@@ -4,12 +4,12 @@ CREATE DATABASE game_db;
 
 USE game_db;
 
-CREATE TABLE users (
-    player_name VARCHAR(8),
-    email VARCHAR(50),
-    ID INT --connects to user id in user_objects, challenges ID, challenger id, target id
-    user_password VARCHAR(15);
-);
+-- CREATE TABLE users (
+--     player_name VARCHAR(8),
+--     email VARCHAR(50),
+--     ID INT --connects to user id in user_objects, challenges ID, challenger id, target id
+--     user_password VARCHAR(15);
+-- );
 
 -- CREATE TABLE user_objects (
 --     object_id INT, --connects to object id in object abilities
