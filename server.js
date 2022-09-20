@@ -35,7 +35,6 @@ io.on('connection',(socket)=>{
   socket.emit('testEvent',{key:'value',key2:'value2'});
 });
 // const hbs = exphbs.create({ helpers });
-
 // const config = {
 //   authRequired: false,
 //   auth0Logout: true,
