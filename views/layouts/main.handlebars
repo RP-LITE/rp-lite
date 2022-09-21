@@ -16,6 +16,7 @@
     var socket = io();
     console.log('socket activated');
     socket.on('testEvent',(data)=> console.log('emit received',data));
+    socket.on('connect_error',(err)=>console.log(err));
   </script>
 </body>
 </html>
