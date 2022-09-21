@@ -28,7 +28,7 @@ UserObjects.belongsTo(User,{
   foreignKey:'user_id'
 });
 
-UserObjects.hasMany(ObjectAbilities,{through:ObjectAbilities,foreignKey:'user_object_id'});
+UserObjects.belongsToMany(Abilities,{through:ObjectAbilities,foreignKey:'user_object_id'});
 Abilities.belongsToMany(UserObjects,{through:ObjectAbilities,foreignKey:'ability_id'});
 
 module.exports = { Connection, User, Challenges, ObjectAbilities, UserObjects };

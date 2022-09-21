@@ -13,9 +13,17 @@ Challenges.init(
     },
     challenger_id: {
       type: DataTypes.INTEGER,
+      references: {
+          model: "user",
+          key: "id",
+      }
     },
     target_id: {
       type: DataTypes.INTEGER,
+      references: {
+          model: "user",
+          key: "id",
+      }
     },
     challenge_object: {
       type: DataTypes.INTEGER,
@@ -25,7 +33,7 @@ Challenges.init(
     sequelize,
     timestamps: false,
     underscored: true,
-    modelName: "Challenges",
+    modelName: "challenges",
   }
 );
 
