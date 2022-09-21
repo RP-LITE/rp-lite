@@ -16,10 +16,13 @@ User.init(
       primaryKey: true,
       autoIncrement: true,
     },
-
-    Player_Name: {
+    user_name:{
       type: DataTypes.STRING,
       allowNull: false,
+      unique:true,
+      validate: {
+        is:/.{2,}/
+      }
     },
     Email: {
       type: DataTypes.STRING,
@@ -33,7 +36,7 @@ User.init(
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: [8],
+        len: [],
       },
     },
   },
