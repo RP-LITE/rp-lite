@@ -1,22 +1,22 @@
 [
   {
     "user_name":"Kurohyou",
-    "Email":"scaseydv@gmail.com",
-    "Password":"password1"
+    "email":"scaseydv@gmail.com",
+    "password":"password1"
   },
   {
     "user_name":"Tanmea",
-    "Email":"adybass@gmail.com",
-    "Password":"password1"
+    "email":"adybass@gmail.com",
+    "password":"password1"
   },
   {
     "user_name":"tGold",
-    "Email":"tom@gmail.com",
-    "Password":"password1"
+    "email":"tom@gmail.com",
+    "password":"password1"
   },
   {
     "user_name":"tyranem",
-    "Email":"emileebogdan@gmail.com",
-    "Password":"password1"
+    "email":"emileebogdan@gmail.com",
+    "password":"password1"
   }
 ]
