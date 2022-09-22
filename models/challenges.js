@@ -27,7 +27,25 @@ Challenges.init(
     },
     challenge_object: {
       type: DataTypes.INTEGER,
+      allowNull:false,
+      references:{
+        model:'userobjects',
+        key: "id",
+        unique: false
+      }
     },
+    target_object:{
+      type: DataTypes.INTEGER,
+      references:{
+        model:'userobjects',
+        key: "id",
+        unique: false
+      }
+    },
+    winner:{
+      // refers to the winner's id
+      type:DataTypes.INTEGER
+    }
   },
   {
     sequelize,
