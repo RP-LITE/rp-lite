@@ -15,10 +15,17 @@ Connection.belongsTo(User,{
 });
 
 User.hasMany(Challenges,{
-  foreignKey:'user_id'
+  foreignKey:'challenger_id'
 });
 Challenges.belongsTo(User,{
-  foreignKey:'user_id'
+  foreignKey:'challenger_id'
+});
+
+User.hasMany(Challenges,{
+  foreignKey:'target_id'
+});
+Challenges.belongsTo(User,{
+  foreignKey:'target_id'
 });
 
 User.hasMany(UserObjects,{
