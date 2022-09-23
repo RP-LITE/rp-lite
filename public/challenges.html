@@ -1,5 +1,7 @@
+<!-- Main Handlebars -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -10,175 +12,187 @@
 
   <!-- Halfmoon CSS -->
   <link href="https://cdn.jsdelivr.net/npm/halfmoon@1.1.1/css/halfmoon.min.css" rel="stylesheet" />
-  <link href="./style.css" rel="stylesheet"> 
+  <link href="./style.css" rel="stylesheet">
 
 </head>
-<a class="with-custom-webkit-scrollbars with-custom-css-scrollbars" data-dm-shortcut-enabled="true" data-sidebar-shortcut-enabled="true" data-set-preferred-mode-onload="true">
-    <div class="modal modal ie-scroll-fix" id="modal-1" tabindex="1" role="dialog" data-overlay-dismissal-disabled="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <a href="#" class="close" role="button" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </a>
-                <h5 class="Modal-title">Sign In</h5>
-                <img src="..." class="img-fluid" alt="modal-img">
-                <h5 class="modal-title">Sign in to your account</h5>
-                  <form action="..." method="...">
-                    <div class="form-group">
-                      <label for="username" class="required">Username</label>
-                      <input type="text" id="username" class="form-control" placeholder="Username" required="required">
-                    </div>
-                    <div class="form-group">
-                      <label for="password" class="required">Password</label>
-                      <input type="password" id="password" class="form-control" placeholder="Password" required="required">
-                    </div>
-                    <input class="btn btn-primary btn-block" type="submit" value="Sign in">
-                  </form>
-                <div class="text-right mt-10"> 
-                  <a href="#modal-2" class="hyperlink">close</a> 
-                </div>
-            </div>
+<a class="with-custom-webkit-scrollbars with-custom-css-scrollbars" data-dm-shortcut-enabled="true"
+  data-sidebar-shortcut-enabled="true" data-set-preferred-mode-onload="true">
+  <!-- HANDLEBAR Sign in modal handlebar -->
+  <div class="modal modal ie-scroll-fix" id="modal-1" tabindex="1" role="dialog" data-overlay-dismissal-disabled="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <a href="#" class="close" role="button" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </a>
+        <h5 class="Modal-title">Sign In</h5>
+        <img src="..." class="img-fluid" alt="modal-img">
+        <h5 class="modal-title">Sign in to your account</h5>
+        <form action="..." method="...">
+          <div class="form-group">
+            <label for="username" class="required">Username</label>
+            <input type="text" id="username" class="form-control" placeholder="Username" required="required">
+          </div>
+          <div class="form-group">
+            <label for="password" class="required">Password</label>
+            <input type="password" id="password" class="form-control" placeholder="Password" required="required">
+          </div>
+          <input class="btn btn-primary btn-block" type="submit" value="Sign in">
+        </form>
+        <div class="text-right mt-10">
+          <a href="#modal-2" class="hyperlink">close</a>
         </div>
+      </div>
+    </div>
   </div>
-  <a class="with-custom-webkit-scrollbars with-custom-css-scrollbars" data-dm-shortcut-enabled="true" data-sidebar-shortcut-enabled="true" data-set-preferred-mode-onload="true">
-    <div class="modal modal ie-scroll-fix" id="modal-2" tabindex="1" role="dialog" data-overlay-dismissal-disabled="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <a href="#" class="close" role="button" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </a>
-                <h5 class="Modal-title">Sign up</h5>
-                <img src="..." class="img-fluid" alt="modal-img">
-                <h5 class="modal-title">Sign up for your account</h5>
-                  <form action="..." method="...">
-                    <div class="form-group">
-                      <label for="username" class="required">Username</label>
-                      <input type="text" id="username" class="form-control" placeholder="Username" required="required">
-                    </div>
-                    <div class="form-group">
-                      <label for="password" class="required">Password</label>
-                      <input type="password" id="password" class="form-control" placeholder="Password" required="required">
-                    </div>
-                    <input class="btn btn-primary btn-block" type="submit" value="Sign up">
-                  </form>
-                <div class="text-right mt-10"> 
-                  <a href="#modal-2" class="hyperlink">close</a> 
-                </div>
+  <!-- End modal handlebar -->
+  <a class="with-custom-webkit-scrollbars with-custom-css-scrollbars" data-dm-shortcut-enabled="true"
+    data-sidebar-shortcut-enabled="true" data-set-preferred-mode-onload="true">
+    <!-- HANDLEBAR Sign up modal handlebar -->
+    <div class="modal modal ie-scroll-fix" id="modal-2" tabindex="1" role="dialog"
+      data-overlay-dismissal-disabled="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <a href="#" class="close" role="button" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </a>
+          <h5 class="Modal-title">Sign up</h5>
+          <img src="..." class="img-fluid" alt="modal-img">
+          <h5 class="modal-title">Sign up for your account</h5>
+          <form action="..." method="...">
+            <div class="form-group">
+              <label for="username" class="required">Username</label>
+              <input type="text" id="username" class="form-control" placeholder="Username" required="required">
             </div>
+            <div class="form-group">
+              <label for="password" class="required">Password</label>
+              <input type="password" id="password" class="form-control" placeholder="Password" required="required">
+            </div>
+            <input class="btn btn-primary btn-block" type="submit" value="Sign up">
+          </form>
+          <div class="text-right mt-10">
+            <a href="#modal-2" class="hyperlink">close</a>
+          </div>
         </div>
-  </div>
+      </div>
+    </div>
+    <!-- End modal Handlebar -->
     <!-- Page wrapper start -->
-  <div class="page-wrapper with-navbar with-sidebar with-navbar-fixed-bottom"
-  data-sidebar-type="full-height" style="background-color:var(--primary-color)">
-  
-    <!-- Navbar start -->
-    <nav class="navbar justify-content-between" style="background-color:var(--primary-color-light)">
-      <div class="navbar-content">
-        <button class="btn btn-success" type="button" onclick="halfmoon.toggleSidebar()">
-          <i class="fa fa-bars" aria-hidden="true"></i>
-        </button>
-      </div>
-      <a href="./home.html" class="navbar-brand">
-        <img src="..." alt="...">
-        RockPaperScissors
-      </a>
-      <ul class="navbar-nav d-none d-flex"> 
-        <li class="nav-item active">
-          <a href="#modal-1" class="nav-link">Sign In</a>
-        </li>
-        <li class="nav-item">
-          <a href="#modal-2" class="nav-link">Sign Up</a>
-        </li>
-      </ul>
-    </nav>
-    <!-- Navbar end -->
+    <div class="page-wrapper with-navbar with-sidebar with-navbar-fixed-bottom" data-sidebar-type="full-height"
+      style="background-color:var(--primary-color)">
 
-    <!-- Sidebar start -->
-    <div class="sidebar" style="background-color: var(--primary-color-blue)" >
-      <div class="sidebar-menu">
-        <h5 class="sidebar-title">General</h5>
-        <div class="sidebar-divider"></div>
-        <a href="./profile.html" class="sidebar-link sidebar-link-with-icon">
-          <span class="sidebar-icon text-white rounded-circle" style="background-color: var(--primary-color-dark)"> 
-            <i class="" aria-hidden="true"></i>
-          </span>
-          Profile
+      <!-- HANDLEBAR Navbar start -->
+      <nav class="navbar justify-content-between" style="background-color:var(--primary-color-light)">
+        <div class="navbar-content">
+          <button class="btn btn-success" type="button" onclick="halfmoon.toggleSidebar()">
+            <i class="fa fa-bars" aria-hidden="true"></i>
+          </button>
+        </div>
+        <a href="./home.html" class="navbar-brand">
+          <img src="..." alt="...">
+          RockPaperScissors
         </a>
-        <a href="./challenges.html" class="sidebar-link sidebar-link-with-icon">
-          <span class="sidebar-icon text-white rounded-circle" style="background-color: var(--primary-color-red)"> 
-            <i class="" aria-hidden="true"></i>
-          </span>
-          Challenges
-        </a>
-        <a href="./creatures.html" class="sidebar-link sidebar-link-with-icon">
-          <span class="sidebar-icon text-white rounded-circle" style="background-color: var(--primary-color-yellow)"> 
-            <i class="" aria-hidden="true"></i>
-          </span>
-          Creature Index
-        </a>
-        <br />
-        <h5 class="sidebar-title">Productivity</h5>
-        <div class="sidebar-divider"></div>
-        <a href="#modal-1" class="sidebar-link sidebar-link-with-icon">
-          <span class="sidebar-icon text-white rounded-circle" style="background-color: var(--primary-color)">  
-            <i class="" aria-hidden="true"></i>
-          </span>
-          Sign In 
-        </a>
-        <a href="#modal-2" class="sidebar-link sidebar-link-with-icon">
-          <span class="sidebar-icon bg-success text-dark rounded-circle">            <i class="" aria-hidden="true"></i>
-          </span>
-          Sign Up
-        </a>
-      </div>
-    </div>
-    <!-- Sidebar end -->
+        <ul class="navbar-nav d-none d-flex">
+          <li class="nav-item active">
+            <a href="#modal-1" class="nav-link">Sign In</a>
+          </li>
+          <li class="nav-item">
+            <a href="#modal-2" class="nav-link">Sign Up</a>
+          </li>
+        </ul>
+      </nav>
+      <!-- Navbar end -->
 
-    <!-- Content wrapper start -->
-    <div class="content-wrapper">
-        <div class="card">
-            <h2 class="content-title">
-                CHALLENGES
-            </h2>
-            <p> 
-            </p>
-        <div class="w-400 mw-full">
-        <div class="card">
-            <h3 class="card-title">
-                Challenge 1
-            </h3>
-            <div class ="text-center">
-                <a href="#" class="btn">Kick their ass!</a>
-            </div>
+      <!-- HANDLEBAR Sidebar start -->
+      <div class="sidebar" style="background-color: var(--primary-color-blue)">
+        <div class="sidebar-menu">
+          <h5 class="sidebar-title">General</h5>
+          <div class="sidebar-divider"></div>
+          <a href="./profile.html" class="sidebar-link sidebar-link-with-icon">
+            <span class="sidebar-icon text-white rounded-circle" style="background-color: var(--primary-color-dark)">
+              <i class="" aria-hidden="true"></i>
+            </span>
+            Profile
+          </a>
+          <a href="./challenges.html" class="sidebar-link sidebar-link-with-icon">
+            <span class="sidebar-icon text-white rounded-circle" style="background-color: var(--primary-color-red)">
+              <i class="" aria-hidden="true"></i>
+            </span>
+            Challenges
+          </a>
+          <a href="./creatures.html" class="sidebar-link sidebar-link-with-icon">
+            <span class="sidebar-icon text-white rounded-circle" style="background-color: var(--primary-color-yellow)">
+              <i class="" aria-hidden="true"></i>
+            </span>
+            Creature Index
+          </a>
+          <br />
+          <h5 class="sidebar-title">Productivity</h5>
+          <div class="sidebar-divider"></div>
+          <a href="#modal-1" class="sidebar-link sidebar-link-with-icon">
+            <span class="sidebar-icon text-white rounded-circle" style="background-color: var(--primary-color)">
+              <i class="" aria-hidden="true"></i>
+            </span>
+            Sign In
+          </a>
+          <a href="#modal-2" class="sidebar-link sidebar-link-with-icon">
+            <span class="sidebar-icon bg-success text-dark rounded-circle"> <i class="" aria-hidden="true"></i>
+            </span>
+            Sign Up
+          </a>
         </div>
-        </div>
-        <div class="w-400 mw-full">
+      </div>
+      <!-- Sidebar end -->
+
+      <!-- Content wrapper start -->
+      <!-- HANDLEBAR Challenges -->
+      <div class="content-wrapper">
+        <div class="card">
+          <h2 class="content-title">
+            CHALLENGES
+          </h2>
+          <p>
+          </p>
+          <div class="w-400 mw-full">
+            <!-- HANDLEBAR Challenge card -->
             <div class="card">
-                <h3 class="card-title">
-                    Challenge 2
-                </h3>
-                <div class ="text-center">
-                    <a href="#" class="btn">Kick their ass!</a>
-                </div>
+              <h3 class="card-title">
+                Challenge 1
+              </h3>
+              <div class="text-center">
+                <a href="#" class="btn">Kick their ass!</a>
+              </div>
             </div>
+            <!-- End Challenge card -->
+          </div>
+          <div class="w-400 mw-full">
+            <div class="card">
+              <h3 class="card-title">
+                Challenge 2
+              </h3>
+              <div class="text-center">
+                <a href="#" class="btn">Kick their ass!</a>
+              </div>
             </div>
-            <div class="w-400 mw-full">
-                <div class="card">
-                    <h3 class="card-title">
-                        Challenge 3
-                    </h3>
-                    <div class ="text-center">
-                        <a href="#" class="btn">Kick their ass!</a>
-                    </div>
-                </div>
-                </div>
+          </div>
+          <div class="w-400 mw-full">
+            <div class="card">
+              <h3 class="card-title">
+                Challenge 3
+              </h3>
+              <div class="text-center">
+                <a href="#" class="btn">Kick their ass!</a>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
+      <!-- End Challenges -->
+      <!-- Content wrapper end -->
     </div>
-    <!-- Content wrapper end -->
-  </div>
-  <!-- Page wrapper end -->
-  <script src="https://cdn.jsdelivr.net/npm/halfmoon@1.1.1/js/halfmoon.min.js"></script>
-  <script src="path/to/halfmoon.js"></script>
+    <!-- Page wrapper end -->
+    <script src="https://cdn.jsdelivr.net/npm/halfmoon@1.1.1/js/halfmoon.min.js"></script>
+    <script src="path/to/halfmoon.js"></script>
 
-</body>
+    </body>
+
 </html>
