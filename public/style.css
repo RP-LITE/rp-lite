@@ -1,8 +1,34 @@
 :root {
-    --basic: #3F88C5;
-    --light: #A2AEBB;
-    --red: #D00000;
-    --blue:v #1c3144;
-    --yellow: #ffba08;
+    --primary-color: #3F88C5;
+    --primary-color-light: #A2AEBB;
+    --primary-color-dark: #363537;
+    --primary-color-red: #D00000;
+    --primary-color-blue: #2D5D7B;
+    --primary-color-yellow: #ffba08;
 }
+
+.body {
+    background-color: var(--basic)
+};
+
+.modal{
+    background-color: var(--light)
+};
+
+.nav {
+    background-color: var(--light)
+};
+
+.sidebar {
+    background-color: var(--light)
+};
+
+.content-wrapper {
+
+};
+
+.card {
+    background-color: var(--basic)
+};
+
 
