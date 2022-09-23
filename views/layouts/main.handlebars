@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,16 +8,12 @@
   <link href="https://cdn.jsdelivr.net/npm/halfmoon@1.1.1/css/halfmoon-variables.min.css" rel="stylesheet" />
   <title>Document</title>
 </head>
+
 <body>
-    {{{ body }}}
+  {{{ body }}}
   <script src="https://cdn.jsdelivr.net/npm/halfmoon@1.1.1/js/halfmoon.min.js"></script>
   <script src="./js/login.js"></script>
-  <script src="/socket.io/socket.io.js"></script>
-  <script>
-    var socket = io();
-    console.log('socket activated');
-    socket.on('testEvent',(data)=> console.log('emit received',data));
-    socket.on('connect_error',(err)=>console.log(err));
-  </script>
+
 </body>
+
 </html>
