@@ -4,27 +4,25 @@ const { User, Challenges } = require("../../models");
 
 const helpers = require('./challengeHelpers');
 
-// !!! TODO !!! Remove the uid parameters from these calls before release to production
-
 // Gets `all` challenges of the user, only those the user has `sent`, or only those the user has `received`.
-router.get('/:subset/:TODO',async (req,res)=>{
+router.get('/:subset', async (req, res) => {
   console.log(req.params.subset);
-  try{
+  try {
     const subsetKey = req.params.subset;
-    if(!/^(?:all|sent|received)$/.test(subsetKey)) res.status(500).send('Invalid challenge query');
-    const userID = req.session.user_id || req.params.TODO;// !!! TODO !!! Remove the fallback before deploy
+    if (!/^(?:all|sent|received)$/.test(subsetKey)) res.status(500).send('Invalid challenge query');
+    const userID = req.session.user_id;
     const whereSwitch = {
-      all:{
-        [Op.or]:[
-          {challenger_id:userID},
-          {target_id:userID}
+      all: {
+        [Op.or]: [
+          { challenger_id: userID },
+          { target_id: userID }
         ]
       },
-      sent:{
-        challenger_id:userID
+      sent: {
+        challenger_id: userID
       },
-      received:{
-        target_id:userID
+      received: {
+        target_id: userID
       }
     };
     const activeChallenges = await Challenges.findAll({
@@ -32,66 +30,66 @@ router.get('/:subset/:TODO',async (req,res)=>{
     });
 
     res.json(activeChallenges);
-  }catch(err){
+  } catch (err) {
     console.error(err);
     res.status(500).json(err.message);
   }
 });
 
-router.post('/:TODO',async (req,res)=>{
-  try{
+router.post('/', async (req, res) => {
+  try {
     // put the data in a shorter variable name
     const data = req.body;
     // create the challenge
     const challenge = await Challenges.create({
-      challenger_id:req.session.user_id || +req.params.TODO,// !!! TODO !!! Remove the fallback before deploy
-      target_id:data.target_id,
-      challenge_object:data.challenge_object
+      challenger_id: req.session.user_id,
+      target_id: data.target_id,
+      challenge_object: data.challenge_object
     });
-    
+
     // update the challengers
     req.updateChallengers(challenge);
 
     // Respond to the client
     res.json(challenge);
-  }catch(err){
+  } catch (err) {
     console.error(err);
     res.status(500).json(err.message);
   }
 });
 
-router.put('/:id', async (req,res)=>{
-  try{
+router.put('/:id', async (req, res) => {
+  try {
     const data = req.body;
     const challenge = await Challenges.findByPk(
       req.params.id
     );
 
-    console.log('challenge',challenge);
+    console.log('challenge', challenge);
 
     challenge.target_object = data.target_object;
     challenge.winner = await helpers.resolve(challenge);
     // Update the challenge data
     await challenge.save();
-    
+
     // update the challengers
     req.updateChallengers(challenge);
 
     // Respond to the client
     res.json(challenge);
 
-  }catch(err){
+  } catch (err) {
     console.error(err);
     res.status(500).json(err.message);
   }
 });
 
-router.delete('/:id',async (req,res)=>{
-  try{
+router.delete('/:id', async (req, res) => {
+  try {
     const challenge = await Challenges.findByPk(req.params.id);
     await challenge.destroy();
     res.json(challenge);
-  }catch(err){
+  } catch (err) {
     console.log(err);
     res.status(500).json(err.message);
   }

@@ -10,10 +10,19 @@
 </head>
 
 <body>
+  <nav>
+    <!-- Conditionally render login or logout links -->
+    {{#if logged_in}}
+    <a href="/profile">profile</a> |
+    <button class="btn" id="logout-btn" type="button">Logout</button>
+
+    {{else}}
+    <a href="/login">login</a>
+    {{/if}}
+  </nav>
   {{{ body }}}
   <script src="https://cdn.jsdelivr.net/npm/halfmoon@1.1.1/js/halfmoon.min.js"></script>
-  <script src="./js/login.js"></script>
-
+  <script src="./js/logout.js"></script>
 </body>
 
 </html>

@@ -22,7 +22,8 @@ router.post("/", async (req, res) => {
 router.post('/login', async (req, res) => {
   try {
     const userData = await User.findOne({ where: { user_name: req.body.user_name } });
-
+    console.log('body', req.body);
+    console.log('userData', userData);
     if (!userData) {
       res
         .status(400)
@@ -31,14 +32,14 @@ router.post('/login', async (req, res) => {
     }
 
     const validPassword = await userData.checkPassword(req.body.password);
-
+    console.log('validPassword', validPassword);
     if (!validPassword) {
       res
         .status(400)
         .json({ message: 'Incorrect username or password, please try again' });
       return;
     }
-
+    console.log('Reached here');
     req.session.save(() => {
       req.session.user_id = userData.id;
       req.session.logged_in = true;
@@ -47,6 +48,7 @@ router.post('/login', async (req, res) => {
     });
 
   } catch (err) {
+    console.log(err);
     res.status(400).json(err);
   }
 });
@@ -61,16 +63,16 @@ router.post('/logout', (req, res) => {
   }
 });
 
-router.get('/', async (req, res) => {
-  try {
+// router.get('/', async (req, res) => {
+//   try {
 
-    const userData = await User.findAll();
-    res.json(userData);
+//     const userData = await User.findAll();
+//     res.json(userData);
 
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
 
 
 module.exports = router;

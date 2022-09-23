@@ -33,14 +33,15 @@ const createIoInterface = (app, session) => {
       next(new Error('Unauthorized access'));
     }
   });
-  io.on('connection', function (socket) {
+  io.on('connection', async (socket) => {
     const userID = socket.request.session.user_id;
-    const userConnection = Connection.create({
+    const userConnection = await Connection.create({
       id: socket.id,
       user_id: userID
     });
     console.log('user connected');
     socket.on('disconnect', () => {
+      console.log('disconnected user');
       userConnection.destroy();
     });
   });
