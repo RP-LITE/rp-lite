@@ -18,38 +18,38 @@ const socketWrapper = middleware => (socket, next) => middleware(socket.request,
  * @param {function} session - The express-session middleware
  * @returns {object} - Returns the io and server objects. Also adds the io object to the app and adds a client store array to the app.
  */
-const createIoInterface = (app,session) => {
+const createIoInterface = (app, session) => {
   // Use https when deployed live
   const httpType = process.env.JAWSDB_URL ? https : http;
   const server = httpType.createServer(app);
   const io = new Server(server);
 
   io.use(socketWrapper(session));
-  io.use((socket,next) => {
+  io.use((socket, next) => {
     const ioSession = socket.request.session;
-    if(ioSession?.authenticated){
+    if (ioSession?.logged_in) {
       next();
-    }else{
+    } else {
       next(new Error('Unauthorized access'));
     }
   });
-  io.on('connection',function(socket){
+  io.on('connection', function (socket) {
     const userID = socket.request.session.user_id;
     const userConnection = Connection.create({
-      id:socket.id,
-      user_id:userID
+      id: socket.id,
+      user_id: userID
     });
     console.log('user connected');
-    socket.on('disconnect',()=>{
+    socket.on('disconnect', () => {
       userConnection.destroy();
     });
   });
-  
+
   // Store reference to io in the app for use in routes.
-  
-  app.use((req,res,next)=>{
+
+  app.use((req, res, next) => {
     req.io = io;
-    req.updateChallengers = (d)=>updateChallengers(io,d);
+    req.updateChallengers = (d) => updateChallengers(io, d);
     next();
   })
 
