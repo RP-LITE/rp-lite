@@ -2,26 +2,113 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://cdn.jsdelivr.net/npm/halfmoon@1.1.1/css/halfmoon-variables.min.css" rel="stylesheet" />
-  <title>Document</title>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+  <meta name="viewport" content="width=device-width" />
+  <link rel="icon" href="#">
+  <title>RP-Lite</title>
+
+  <!-- Halfmoon CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/halfmoon@1.1.1/css/halfmoon.min.css" rel="stylesheet" />
+  <link href="./style.css" rel="stylesheet">
+
 </head>
 
 <body>
-  <nav>
-    <!-- Conditionally render login or logout links -->
-    {{#if logged_in}}
-    <a href="/profile">profile</a> |
-    <button class="btn" id="logout-btn" type="button">Logout</button>
+  {{> signup-modals}}
+  <!-- Page wrapper start -->
+  <div class="page-wrapper with-navbar with-sidebar with-navbar-fixed-bottom" data-sidebar-type="full-height"
+    style="background-color:var(--primary-color)">
 
-    {{else}}
-    <a href="/login">login</a>
-    {{/if}}
-  </nav>
-  {{{ body }}}
+    <!-- Navbar start -->
+    <nav class="navbar justify-content-between" style="background-color:var(--primary-color-light)">
+      <div class="navbar-content">
+        <button class="btn btn-success" type="button" onclick="halfmoon.toggleSidebar()">
+          <i class="fa fa-bars" aria-hidden="true"></i>
+        </button>
+      </div>
+      <a href="./home.html" class="navbar-brand">
+        <img src="..." alt="...">
+        RockPaperScissors
+      </a>
+      {{!-- <ul class="navbar-nav d-none d-flex">
+        <li class="nav-item active">
+          <a href="#modal-1" class="nav-link">Sign In</a>
+        </li>
+        <li class="nav-item">
+          <a href="#modal-2" class="nav-link">Sign Up</a>
+        </li>
+      </ul> --}}
+      <!-- Conditionally render login or logout links -->
+      {{#if logged_in}}
+      {{!-- <a href="/profile">profile</a> | --}}
+      <button class="btn" id="logout-btn" type="button">Logout</button>
+      {{else}}
+      <ul class="navbar-nav d-none d-flex">
+        <li class="nav-item active">
+          <a href="#modal-1" class="nav-link">Sign In</a>
+        </li>
+        <li class="nav-item">
+          <a href="#modal-2" class="nav-link">Sign Up</a>
+        </li>
+      </ul>
+      {{/if}}
+    </nav>
+    <!-- Navbar end -->
+
+    <!-- Sidebar start -->
+    <div class="sidebar" style="background-color: var(--primary-color-blue)">
+      <div class="sidebar-menu">
+        <h5 class="sidebar-title">General</h5>
+        <div class="sidebar-divider"></div>
+        <a href="./profile.html" class="sidebar-link sidebar-link-with-icon">
+          <span class="sidebar-icon text-white rounded-circle" style="background-color: var(--primary-color-dark)">
+            <i class="" aria-hidden="true"></i>
+          </span>
+          Profile
+        </a>
+        <a href="./challenges.html" class="sidebar-link sidebar-link-with-icon">
+          <span class="sidebar-icon text-white rounded-circle" style="background-color: var(--primary-color-red)">
+            <i class="" aria-hidden="true"></i>
+          </span>
+          Challenges
+        </a>
+        <a href="./creatures.html" class="sidebar-link sidebar-link-with-icon">
+          <span class="sidebar-icon text-white rounded-circle" style="background-color: var(--primary-color-yellow)">
+            <i class="" aria-hidden="true"></i>
+          </span>
+          Creature Index
+        </a>
+        <br />
+        <h5 class="sidebar-title">Account</h5>
+        <div class="sidebar-divider"></div>
+        <!-- Conditional logged in / logged out -->
+        {{#if logged_in}}
+        <button class="btn" id="logout-btn" type="button">Logout</button>
+        {{else}}
+        <a href="#modal-1" class="sidebar-link sidebar-link-with-icon">
+          <span class="sidebar-icon text-white rounded-circle" style="background-color: var(--primary-color)">
+            <i class="" aria-hidden="true"></i>
+          </span>
+          Sign In
+        </a>
+        <a href="#modal-2" class="sidebar-link sidebar-link-with-icon">
+          <span class="sidebar-icon bg-success text-dark rounded-circle"> <i class="" aria-hidden="true"></i>
+          </span>
+          Sign Up
+        </a>
+        {{/if}}
+      </div>
+    </div>
+    <!-- Sidebar end -->
+    <!-- Content wrapper start -->
+    {{{ body }}}
+    <!-- Content wrapper end -->
+  </div>
+  <!-- Page wrapper end -->
   <script src="https://cdn.jsdelivr.net/npm/halfmoon@1.1.1/js/halfmoon.min.js"></script>
+  <script src="./js/login.js"></script>
   <script src="./js/logout.js"></script>
 </body>
 
