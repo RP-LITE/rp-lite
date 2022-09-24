@@ -28,18 +28,10 @@
           <i class="fa fa-bars" aria-hidden="true"></i>
         </button>
       </div>
-      <a href="./home.html" class="navbar-brand">
+      <a href="./" class="navbar-brand">
         <img src="..." alt="...">
-        RockPaperScissors
+        Rock-Dog, Paper-Squirrel, Scissor-Cat
       </a>
-      {{!-- <ul class="navbar-nav d-none d-flex">
-        <li class="nav-item active">
-          <a href="#modal-1" class="nav-link">Sign In</a>
-        </li>
-        <li class="nav-item">
-          <a href="#modal-2" class="nav-link">Sign Up</a>
-        </li>
-      </ul> --}}
       <!-- Conditionally render login or logout links -->
       {{#if logged_in}}
       {{!-- <a href="/profile">profile</a> | --}}
@@ -60,26 +52,28 @@
     <!-- Sidebar start -->
     <div class="sidebar" style="background-color: var(--primary-color-blue)">
       <div class="sidebar-menu">
-        <h5 class="sidebar-title">General</h5>
+        <h5 class="sidebar-title">RP-Lite</h5>
         <div class="sidebar-divider"></div>
-        <a href="./profile.html" class="sidebar-link sidebar-link-with-icon">
+        <a href="./" class="sidebar-link sidebar-link-with-icon">
+          <span class="sidebar-icon text-white rounded-circle" style="background-color: var(--primary-color-red)">
+            <i class="" aria-hidden="true"></i>
+          </span>
+          Home
+        </a>
+        {{#if logged_in}}
+        <a href="./profile" class="sidebar-link sidebar-link-with-icon">
           <span class="sidebar-icon text-white rounded-circle" style="background-color: var(--primary-color-dark)">
             <i class="" aria-hidden="true"></i>
           </span>
           Profile
         </a>
-        <a href="./challenges.html" class="sidebar-link sidebar-link-with-icon">
-          <span class="sidebar-icon text-white rounded-circle" style="background-color: var(--primary-color-red)">
-            <i class="" aria-hidden="true"></i>
-          </span>
-          Challenges
-        </a>
-        <a href="./creatures.html" class="sidebar-link sidebar-link-with-icon">
+        {{/if}}
+        {{!-- <a href="./creatures.html" class="sidebar-link sidebar-link-with-icon">
           <span class="sidebar-icon text-white rounded-circle" style="background-color: var(--primary-color-yellow)">
             <i class="" aria-hidden="true"></i>
           </span>
           Creature Index
-        </a>
+        </a> --}}
         <br />
         <h5 class="sidebar-title">Account</h5>
         <div class="sidebar-divider"></div>
