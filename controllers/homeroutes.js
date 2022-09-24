@@ -9,13 +9,13 @@ router.get('/', (req, res) => {
   res.render('homepage', { logged_in: req.session.logged_in });
 });
 
-router.get('/login', (req, res) => {
-  if (req.session.logged_in) {
-    res.redirect('/profile');
-    return;
-  }
-  res.render('login');
-});
+// router.get('/login', (req, res) => {
+//   if (req.session.logged_in) {
+//     res.redirect('/profile');
+//     return;
+//   }
+//   res.render('login');
+// });
 
 router.get("/profile", withAuth, async (req, res) => {
   try {
