@@ -2,8 +2,6 @@ const router = require("express").Router();
 const { TimeoutError } = require("sequelize");
 const { User, UserObjects } = require("../../models");
 
-
-
 router.post("/", async (req, res) => {
   try {
     const userData = await User.create(req.body);
@@ -12,16 +10,19 @@ router.post("/", async (req, res) => {
       {
         user_id: userData.id,
         rock_lvl: 1,
+        type: 'rock',
         img: '/public/portraits/rock.png'
       },
       {
         user_id: userData.id,
         paper_lvl: 1,
+        type: 'paper',
         img: '/public/portraits/paper.png'
       },
       {
         user_id: userData.id,
         scissor_lvl: 1,
+        type: 'scissor',
         img: '/public/portraits/scissor.png'
       }
     ]);

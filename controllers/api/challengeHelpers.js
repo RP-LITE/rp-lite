@@ -35,16 +35,10 @@ const resolve = async (challenge) => {
   const challenger = challenge.attacker;
   const defender = challenge.defender;
 
-  const challengerDetails = Object.keys(weaknessOf).reduce((memo,t) => {
-    if(challenger[`${t}_lvl`] && challenger[`${t}_lvl`] > memo.level){
-      memo.type = t;
-      memo.level = challenger[`${t}_lvl`];
-    }
-    return memo;
-  },{
-    type: '',
-    level:0
-  });
+  const challengerDetails = {
+    type: challenger.type,
+    level: challenger[`${challenger.type}_lvl`]
+  };
 
   const defenderLevel = Object.entries(weaknessOf).reduce((total,[t,w])=>{
     const dLvl = defender[`${t}_lvl`];
@@ -68,7 +62,7 @@ const resolve = async (challenge) => {
     challenge.challenger_id :
     challenge.target_id;
   
-  if(challenge.winner === challenge.challenger_id){
+  if(result > 0){
     awardXP(challenger,defender);
   }else{
     awardXP(defender,challenger);

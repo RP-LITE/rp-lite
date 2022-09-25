@@ -31,12 +31,12 @@ router.get('/:subset', async (req, res) => {
         {
           model:User,
           as:'challenger',
-          attributes:{exclude:['password']}
+          attributes:{exclude:['password','email']}
         },
         {
           model:User,
           as:'target',
-          attributes:{exclude:['password']}
+          attributes:{exclude:['password','email']}
         },
         {
           model:UserObjects,
@@ -62,17 +62,39 @@ router.post('/', async (req, res) => {
     const data = req.body;
     const attacker = await UserObjects.findByPk(data.challenge_object);
     if(attacker.user_id !== req.session.user_id) return res.status(500).json('Other user creature');
+    if(attacker.is_charming) return res.status(500).json('Creature already assigned');
+    attacker.is_charming = true;
+    await attacker.save();
     // create the challenge
     const challenge = await Challenges.create({
       challenger_id: req.session.user_id,
       target_id: data.target_id,
       challenge_object: data.challenge_object
-    });
-
-    challenge.attacker = attacker;
+    })
+      .then(r => Challenges.findByPk(
+          r.id,
+          {
+            include:[
+              {
+                model:User,
+                as:'challenger',
+                attributes:{exclude:['password','email']}
+              },
+              {
+                model:User,
+                as:'target',
+                attributes:{exclude:['password','email']}
+              },
+              {
+                model:UserObjects,
+                as:'attacker'
+              }
+            ]
+          }
+        )
+      );
     // update the challengers
     req.updateChallengers(challenge);
-
     // Respond to the client
     res.json(challenge);
   } catch (err) {
@@ -88,6 +110,7 @@ router.put('/:id', async (req, res) => {
     const defender = await UserObjects.findByPk(data.target_object);
     console.log('defender',defender.dataValues);
     if(defender.user_id !== req.session.user_id) return res.status(500).json('Other user creature');
+    if(defender.is_charming) return res.status(500).json('Creature already assigned');
     const challenge = await Challenges.findByPk(
       req.params.id,
       {
@@ -109,17 +132,20 @@ router.put('/:id', async (req, res) => {
           {
             model:UserObjects,
             as:'defender'
-          },
+          }
         ]
       }
     );
+    if(challenge.winner){
+      return res.status(500).json('challenge already resolved');
+    }
     if(challenge.target_id !== req.session.user_id) return res.status(500).json('Not defender');
     challenge.target_object = data.target_object;
-    challenge.defender = defender;
+    challenge.set({defender});
     await helpers.resolve(challenge);
     // Update the challenge data
     await Promise.all([challenge.save(),challenge.attacker?.save(),challenge.defender?.save()]);
-
+    console.log('challenge',challenge);
     // update the challengers
     req.updateChallengers(challenge);
 
@@ -134,8 +160,34 @@ router.put('/:id', async (req, res) => {
 
 router.delete('/:id', async (req, res) => {
   try {
-    const challenge = await Challenges.findByPk(req.params.id);
+    const challenge = await Challenges.findByPk(
+      req.params.id,
+      {
+        include:[
+          {
+            model:User,
+            as:'challenger',
+            attributes:{exclude:['password','email']}
+          },
+          {
+            model:User,
+            as:'target',
+            attributes:{exclude:['password','email']}
+          },
+          {
+            model:UserObjects,
+            as:'attacker'
+          },
+          {
+            model:UserObjects,
+            as:'defender'
+          }
+        ]
+      }
+    );
     if(challenge.challenger_id !== req.session.user_id) return res.status(500).json('Not challenger');
+    
+    challenge.attacker.update({is_charming:false});
     await challenge.destroy();
     res.json(challenge);
   } catch (err) {

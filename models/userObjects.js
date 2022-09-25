@@ -19,6 +19,12 @@ UserObjects.init(
         key: "id",
       }
     },
+    type:{
+      type: DataTypes.STRING,
+      validate:{
+        is: /^(?:scissor|rock|paper)$/
+      }
+    },
     rock_lvl: {
       type: DataTypes.INTEGER,
     },
@@ -38,6 +44,10 @@ UserObjects.init(
     experience_threshold:{
       type: DataTypes.INTEGER,
       defaultValue:1
+    },
+    is_charming:{
+      type: DataTypes.BOOLEAN,
+      defaultValue:false
     }
   },
   {
