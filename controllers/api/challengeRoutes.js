@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const { TimeoutError, Op } = require("sequelize");
-const { User, Challenges } = require("../../models");
+const { User, Challenges, UserObjects } = require("../../models");
 
 const helpers = require('./challengeHelpers');
 
@@ -26,7 +26,27 @@ router.get('/:subset', async (req, res) => {
       }
     };
     const activeChallenges = await Challenges.findAll({
-      where: whereSwitch[subsetKey]
+      where: whereSwitch[subsetKey],
+      include:[
+        {
+          model:User,
+          as:'challenger',
+          attributes:{exclude:['password']}
+        },
+        {
+          model:User,
+          as:'target',
+          attributes:{exclude:['password']}
+        },
+        {
+          model:UserObjects,
+          as:'attacker'
+        },
+        {
+          model:UserObjects,
+          as:'defender'
+        },
+      ]
     });
 
     res.json(activeChallenges);
@@ -40,6 +60,8 @@ router.post('/', async (req, res) => {
   try {
     // put the data in a shorter variable name
     const data = req.body;
+    const attacker = await UserObjects.findByPk(data.challenge_object);
+    if(attacker.user_id !== req.session.user_id) return res.status(500).json('Other user creature');
     // create the challenge
     const challenge = await Challenges.create({
       challenger_id: req.session.user_id,
@@ -47,6 +69,7 @@ router.post('/', async (req, res) => {
       challenge_object: data.challenge_object
     });
 
+    challenge.attacker = attacker;
     // update the challengers
     req.updateChallengers(challenge);
 
@@ -58,19 +81,44 @@ router.post('/', async (req, res) => {
   }
 });
 
+// Complete a challenge
 router.put('/:id', async (req, res) => {
   try {
     const data = req.body;
+    const defender = await UserObjects.findByPk(data.target_object);
+    console.log('defender',defender.dataValues);
+    if(defender.user_id !== req.session.user_id) return res.status(500).json('Other user creature');
     const challenge = await Challenges.findByPk(
-      req.params.id
+      req.params.id,
+      {
+        include:[
+          {
+            model:User,
+            as:'challenger',
+            attributes:{exclude:['password','email']}
+          },
+          {
+            model:User,
+            as:'target',
+            attributes:{exclude:['password','email']}
+          },
+          {
+            model:UserObjects,
+            as:'attacker'
+          },
+          {
+            model:UserObjects,
+            as:'defender'
+          },
+        ]
+      }
     );
-
-    console.log('challenge', challenge);
-
+    if(challenge.target_id !== req.session.user_id) return res.status(500).json('Not defender');
     challenge.target_object = data.target_object;
-    challenge.winner = await helpers.resolve(challenge);
+    challenge.defender = defender;
+    await helpers.resolve(challenge);
     // Update the challenge data
-    await challenge.save();
+    await Promise.all([challenge.save(),challenge.attacker?.save(),challenge.defender?.save()]);
 
     // update the challengers
     req.updateChallengers(challenge);
@@ -87,6 +135,7 @@ router.put('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
   try {
     const challenge = await Challenges.findByPk(req.params.id);
+    if(challenge.challenger_id !== req.session.user_id) return res.status(500).json('Not challenger');
     await challenge.destroy();
     res.json(challenge);
   } catch (err) {

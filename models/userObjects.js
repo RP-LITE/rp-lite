@@ -31,6 +31,14 @@ UserObjects.init(
     img: {
       type: DataTypes.STRING,
     },
+    experience:{
+      type: DataTypes.INTEGER,
+      defaultValue:0
+    },
+    experience_threshold:{
+      type: DataTypes.INTEGER,
+      defaultValue:1
+    }
   },
   {
     sequelize,

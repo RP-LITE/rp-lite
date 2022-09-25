@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const { UserObjects, User } = require("../../models");
 
+// Get all user's creatures
 router.get('/', async (req, res) => {
   try {
     const userID = req.session.user_id;
@@ -47,23 +48,6 @@ router.post('/', async (req, res) => {
       res.status(500).json('starter creatures already made');
       return;
     }
-    const newObjects = await UserObjects.bulkCreate([
-      {
-        user_id: userID,
-        rock_lvl: 1,
-        img: '/public/portraits/rock.png'
-      },
-      {
-        user_id: userID,
-        paper_lvl: 1,
-        img: '/public/portraits/rock.png'
-      },
-      {
-        user_id: userID,
-        scissor_lvl: 1,
-        img: '/public/portraits/rock.png'
-      }
-    ]);
     res.json(newObjects);
   } catch (err) {
     console.log(err);

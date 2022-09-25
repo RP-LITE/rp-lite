@@ -13,19 +13,49 @@ User.hasMany(Connection,{
 Connection.belongsTo(User,{
   foreignKey:'user_id'
 });
-
+// Transfers.belongsTo(Accounts, { as: 'accountFrom', onDelete: 'cascade', onUpdate: 'no action' });
+// Transfers.belongsTo(Accounts, { as: 'accountTo', onDelete: 'cascade', onUpdate: 'no action' });
 User.hasMany(Challenges,{
-  foreignKey:'challenger_id'
+  foreignKey:'challenger_id',
+  as:'challenger',
+  onDelete:'cascade'
 });
 Challenges.belongsTo(User,{
-  foreignKey:'challenger_id'
+  foreignKey:'challenger_id',
+  as:'challenger',
+  onDelete:'cascade'
 });
-
-User.hasMany(Challenges,{
-  foreignKey:'target_id'
+User.belongsTo(Challenges,{
+  foreignKey:'target_id',
+  as:'target',
+  onDelete:'SET NULL'
 });
 Challenges.belongsTo(User,{
-  foreignKey:'target_id'
+  foreignKey:'target_id',
+  as:'target',
+  onDelete:'SET NULL'
+});
+
+UserObjects.hasMany(Challenges,{
+  foreignKey:'challenge_object',
+  as:'attacker',
+  onDelete:'CASCADE'
+});
+Challenges.belongsTo(UserObjects,{
+  foreignKey:'challenge_object',
+  as:'attacker',
+  onDelete:'CASCADE'
+});
+
+UserObjects.hasMany(Challenges,{
+  foreignKey:'target_object',
+  as: 'defender',
+  onDelete:'SET NULL'
+});
+Challenges.belongsTo(UserObjects,{
+  foreignKey:'target_object',
+  as: 'defender',
+  onDelete:'SET NULL'
 });
 
 User.hasMany(UserObjects,{
