@@ -27,6 +27,7 @@ router.post('/:type', async (req, res) => {
     const newObject = await UserObjects.create({
       user_id: req.session.user_id,
       [`${type}_lvl`]: 1,
+      type,
       img: `/public/portratis/${type}.png`
     });
     res.json(newObject);
