@@ -12,6 +12,7 @@ const userSeedData = require('./userSeedData.json');
     [1,4,8].forEach((n)=>{
       userObjects.push({
         user_id:user.id,
+        type:'rock',
         rock_lvl: n,
         paper_lvl: Math.floor(n/4),
         img:'/public/portraits/rock.png'

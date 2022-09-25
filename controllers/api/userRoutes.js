@@ -1,18 +1,37 @@
 const router = require("express").Router();
 const { TimeoutError } = require("sequelize");
-const { User } = require("../../models");
-
-
+const { User, UserObjects } = require("../../models");
 
 router.post("/", async (req, res) => {
   try {
     const userData = await User.create(req.body);
+    
+    const newObjects = await UserObjects.bulkCreate([
+      {
+        user_id: userData.id,
+        rock_lvl: 1,
+        type: 'rock',
+        img: '/public/portraits/rock.png'
+      },
+      {
+        user_id: userData.id,
+        paper_lvl: 1,
+        type: 'paper',
+        img: '/public/portraits/paper.png'
+      },
+      {
+        user_id: userData.id,
+        scissor_lvl: 1,
+        type: 'scissor',
+        img: '/public/portraits/scissor.png'
+      }
+    ]);
 
     req.session.save(() => {
       req.session.user_id = userData.id;
       req.session.logged_in = true;
 
-      res.status(200).json(userData);
+      res.status(200).json({...userData.dataValues,userobjects:newObjects});
     });
   } catch (err) {
     res.status(400).json(err.message);
@@ -21,7 +40,12 @@ router.post("/", async (req, res) => {
 
 router.post('/login', async (req, res) => {
   try {
-    const userData = await User.findOne({ where: { user_name: req.body.user_name } });
+    const userData = await User.findOne({
+      where: { user_name: req.body.user_name },
+      include:[
+        UserObjects
+      ]
+    });
     console.log('body', req.body);
     console.log('userData', userData);
     if (!userData) {

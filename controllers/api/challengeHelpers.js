@@ -1,5 +1,21 @@
 const { UserObjects } = require('../../models');
 
+const weaknessOf = {
+  rock:'paper',
+  paper:'scissor',
+  scissor:'rock'
+};
+
+const awardXP = (winner,loser) => {
+  const loserLevel = Object.keys(weaknessOf).reduce((memo,key)=>{
+    if(!loser[`${memo}_lvl`] || loser[`${memo}_lvl`] < loser[`${key}_lvl`]){
+      memo = key;
+    }
+    return memo;
+  });
+  winner.experience += loser[`${loserLevel}_lvl`];
+};
+
 /**
  * Resolves a challenge by comparing relevant levels (and eventually abilities). Results are figured as follows:
  * - Attackers use only their highest level
@@ -15,25 +31,14 @@ const { UserObjects } = require('../../models');
  * @returns {number} - ID of the winner
  */
 const resolve = async (challenge) => {
-  const challenger = await UserObjects.findByPk(challenge.challenge_object);
-  const defender = await UserObjects.findByPk(challenge.target_object);
-  console.log(challenger);
-  const weaknessOf = {
-    rock:'paper',
-    paper:'scissor',
-    scissor:'rock'
-  };
+  console.log('resolving',challenge);
+  const challenger = challenge.attacker;
+  const defender = challenge.defender;
 
-  const challengerDetails = Object.keys(weaknessOf).reduce((memo,t) => {
-    if(challenger[`${t}_lvl`] && challenger[`${t}_lvl`] > memo.level){
-      memo.type = t;
-      memo.level = challenger[`${t}_lvl`];
-    }
-    return memo;
-  },{
-    type: '',
-    level:0
-  });
+  const challengerDetails = {
+    type: challenger.type,
+    level: challenger[`${challenger.type}_lvl`]
+  };
 
   const defenderLevel = Object.entries(weaknessOf).reduce((total,[t,w])=>{
     const dLvl = defender[`${t}_lvl`];
@@ -53,9 +58,15 @@ const resolve = async (challenge) => {
   },0);
 
   const result = challengerDetails.level - defenderLevel;
-  return result > 0 ? 
+  challenge.winner = result > 0 ? 
     challenge.challenger_id :
     challenge.target_id;
+  
+  if(result > 0){
+    awardXP(challenger,defender);
+  }else{
+    awardXP(defender,challenger);
+  }
 };
 
 module.exports = { resolve };

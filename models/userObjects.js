@@ -19,6 +19,12 @@ UserObjects.init(
         key: "id",
       }
     },
+    type:{
+      type: DataTypes.STRING,
+      validate:{
+        is: /^(?:scissor|rock|paper)$/
+      }
+    },
     rock_lvl: {
       type: DataTypes.INTEGER,
     },
@@ -31,6 +37,18 @@ UserObjects.init(
     img: {
       type: DataTypes.STRING,
     },
+    experience:{
+      type: DataTypes.INTEGER,
+      defaultValue:0
+    },
+    experience_threshold:{
+      type: DataTypes.INTEGER,
+      defaultValue:1
+    },
+    is_charming:{
+      type: DataTypes.BOOLEAN,
+      defaultValue:false
+    }
   },
   {
     sequelize,
