@@ -5,30 +5,46 @@
     --primary-color-red: #D00000;
     --primary-color-blue: #2D5D7B;
     --primary-color-yellow: #ffba08;
+    --progress-height: 6rem;
 }
 
 .body {
     background-color: var(--basic)
-};
+}
 
-.modal{
+;
+
+.battery {
+    --progress-height: 6rem;
+    /* Before: 0.5rem (5px) */
+    --progress-border-radius: 0.2rem;
+    /* Before: 3.2rem (32px) */
+}
+
+.modal {
     background-color: var(--light)
-};
+}
+
+;
 
 .nav {
     background-color: var(--light)
-};
+}
+
+;
 
 .sidebar {
     background-color: var(--light)
-};
+}
 
-.content-wrapper {
+;
 
-};
+.content-wrapper {}
+
+;
 
 .card {
     background-color: var(--basic)
-};
+}
 
-
+;

@@ -1,21 +1,24 @@
 <!-- Content wrapper start -->
-{{#with user.dataValues}}
+
+
+{{!-- {{#with user.dataValues}} --}}
 <div class="content-wrapper">
     <div>
-        <h2>Welcome, {{user_name}}!</h2>
+        <h2>Welcome, {{user.dataValues.user_name}}!</h2>
+
     </div>
     <div class="container-fluid">
         <div class="row">
             <div class="col-6">
-                {{#with userobjects}}
-                    {{>creatureProfile}}</div>
-                {{/with}}
+                {{!-- {{#with userobjects}} --}}
+                {{>creatureProfile}}</div>
+            {{!-- {{/with}} --}}
             <div class="col-6">
                 {{>challengeProfile}}</div>
         </div> <!-- row end -->
     </div>
 </div> <!-- Content wrapper above this line -->
-{{/with}}
+{{!-- {{/with}} --}}
 
 
 <script src="/socket.io/socket.io.js"></script>
