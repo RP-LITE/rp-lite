@@ -1,10 +1,10 @@
-const withAuth = (req, res, next) => {
-  // If the user isn't logged in, redirect them to the login route
-  if (!req.session.logged_in) {
-    res.redirect('/');
-  } else {
-    next();
+// Protects routes that should be protected
+const checkLogin = (req, res, next) => {
+  if (req.session.logged_in) {
+      next();
+      return;
   }
-};
+  res.status(500).json('Not Logged in');
+}
 
-module.exports = withAuth;
+module.exports = { checkLogin };

@@ -50,7 +50,9 @@ const createIoInterface = (app, session) => {
 
   app.use((req, res, next) => {
     req.io = io;
-    req.updateChallengers = (d) => updateChallengers(io, d);
+    req.updateChallengers = function(){
+      updateChallengers(io, ...arguments);
+    }
     next();
   })
 

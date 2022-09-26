@@ -1,4 +1,5 @@
 <!-- Content wrapper start -->
+{{#with user.dataValues}}
 <div class="content-wrapper">
     <div>
         <h2>Welcome, {{user_name}}!</h2>
@@ -6,22 +7,17 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-6">
-                {{>creatureProfile}}</div>
+                {{#with userobjects as userobjects}}
+                    {{>creatureProfile}}</div>
+                {{/with}}
             <div class="col-6">
                 {{>challengeProfile}}</div>
         </div> <!-- row end -->
     </div>
 </div> <!-- Content wrapper above this line -->
+{{/with}}
 
 
 <script src="/socket.io/socket.io.js"></script>
-{{!--
-<script src="path/to/halfmoon.js"></script> --}}
-
-<script>
-    var socket = io();
-    console.log('socket activated');
-    console.log(socket);
-    socket.on('testEvent', (data) => console.log('emit received', data));
-    socket.on('connect_error', (err) => console.log(err));
-</script>
+<script src="./js/socketSetup.js"></script>
+<script src="./js/challengeSync.js"></script>

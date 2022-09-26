@@ -4,6 +4,25 @@ const { User, Challenges, UserObjects } = require("../../models");
 
 const helpers = require('./challengeHelpers');
 
+// Searches for users to challenge
+router.get('/search',async (req,res) => {
+  try{
+    const users = await User.findAll({
+      where:{
+        id:{
+          [Op.ne]:req.session.user_id
+        }
+      },
+      attributes:{
+        exclude:['password','email']
+      }
+    });
+    res.json(users);
+  }catch(err){
+    console.log(err);
+    res.json(err.message);
+  }
+})
 // Gets `all` challenges of the user, only those the user has `sent`, or only those the user has `received`.
 router.get('/:subset', async (req, res) => {
   console.log(req.params.subset);
@@ -186,6 +205,7 @@ router.delete('/:id', async (req, res) => {
       }
     );
     if(challenge.challenger_id !== req.session.user_id) return res.status(500).json('Not challenger');
+    req.updateChallengers(challenge,'delete');
     
     challenge.attacker.update({is_charming:false});
     await challenge.destroy();

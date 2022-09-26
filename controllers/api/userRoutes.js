@@ -26,13 +26,11 @@ router.post("/", async (req, res) => {
         img: '/public/portraits/scissor.png'
       }
     ]);
+    // Removed save call as not necessary
+    req.session.user_id = userData.id;
+    req.session.loged_in = true;
 
-    req.session.save(() => {
-      req.session.user_id = userData.id;
-      req.session.logged_in = true;
-
-      res.status(200).json({...userData.dataValues,userobjects:newObjects});
-    });
+    res.status(200).json({user:{...userData.dataValues,userobjects:newObjects},message:'You are now logged in'});
   } catch (err) {
     res.status(400).json(err.message);
   }
@@ -46,8 +44,6 @@ router.post('/login', async (req, res) => {
         UserObjects
       ]
     });
-    console.log('body', req.body);
-    console.log('userData', userData);
     if (!userData) {
       res
         .status(400)
@@ -63,13 +59,11 @@ router.post('/login', async (req, res) => {
         .json({ message: 'Incorrect username or password, please try again' });
       return;
     }
-    console.log('Reached here');
-    req.session.save(() => {
-      req.session.user_id = userData.id;
-      req.session.logged_in = true;
+    // Removed save call as not necessary
+    req.session.user_id = userData.id;
+    req.session.loged_in = true;
 
-      res.json({ user: userData, message: 'You are now logged in!' });
-    });
+    res.status(200).json({user:userData,message:'You are now logged in'});
 
   } catch (err) {
     console.log(err);

@@ -1,6 +1,6 @@
 const path = require('path');
 const router = require('express').Router();
-const withAuth = require('../utils/auth');
+const auth = require('../utils/auth');
 const { Challenges, UserObjects, User } = require("../models");
 
 // const withAuth = require('../utils/auth');
@@ -17,17 +17,29 @@ router.get('/', (req, res) => {
 //   res.render('login');
 // });
 
-router.get("/profile", withAuth, async (req, res) => {
+router.get("/profile", auth.checkLogin , async (req, res) => {
   try {
+    console.log('getting profile');
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ['password'] },
-      include: [{ model: UserObjects }, { model: Challenges }],
+      include: [
+        UserObjects,
+        {
+          model: Challenges,
+          as:'challenger',
+        },
+        {
+          model: Challenges,
+          as:'target',
+        }
+      ],
+      attributes:{
+        exclude:['password','email']
+      },
     });
-
-    const user = userData.get({ plain: true });
-
+    console.log(userData.dataValues);
     res.render('profile', {
-      ...user,
+      user:userData,
       logged_in: true
     });
   } catch (err) {

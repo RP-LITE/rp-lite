@@ -2,6 +2,7 @@ const router = require("express").Router();
 const { UserObjects, User } = require("../../models");
 
 // Get all user's creatures
+
 router.get('/', async (req, res) => {
   try {
     const userID = req.session.user_id;
