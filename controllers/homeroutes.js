@@ -17,30 +17,71 @@ router.get('/', (req, res) => {
 //   res.render('login');
 // });
 
-router.get("/profile", auth.checkLogin , async (req, res) => {
+// router.get("/profile", auth.checkLogin , async (req, res) => {
+//   try {
+//     console.log('getting profile');
+//     const userData = await User.findByPk(req.session.user_id, {
+//       attributes: { exclude: ['password'] },
+//       include: [
+//         UserObjects,
+//         {
+//           model: Challenges,
+//           as:'challenger',
+//         },
+//         {
+//           model: Challenges,
+//           as:'target',
+//         }
+//       ],
+//       attributes:{
+//         exclude:['password','email']
+//       },
+//     });
+//     console.log(userData.dataValues);
+//     res.render('profile', {
+//       user:userData,
+//       logged_in: true
+//     });
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
+
+router.get("/profile", async (req, res) => {
   try {
-    console.log('getting profile');
+    // console.log('getting profile');
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ['password'] },
       include: [
         UserObjects,
         {
           model: Challenges,
-          as:'challenger',
+          as: 'challenger',
         },
         {
           model: Challenges,
-          as:'target',
+          as: 'target',
         }
       ],
-      attributes:{
-        exclude:['password','email']
+      attributes: {
+        exclude: ['password', 'email']
       },
     });
-    console.log(userData.dataValues);
+    const userID = req.session.user_id;
+    const creatures = await UserObjects.findAll({
+      where: {
+        user_id: userID
+      }
+    });
+    const creatureIndex = creatures.map(creature => creature.get({ plain: true }));
+    const tempObject = {
+      id: 55
+    }
+    // console.log(userData.dataValues);
     res.render('profile', {
-      user:userData,
-      logged_in: true
+      user: userData,
+      logged_in: true,
+      creature: creatureIndex
     });
   } catch (err) {
     res.status(500).json(err);
