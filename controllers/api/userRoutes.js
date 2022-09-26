@@ -28,7 +28,7 @@ router.post("/", async (req, res) => {
     ]);
     // Removed save call as not necessary
     req.session.user_id = userData.id;
-    req.session.loged_in = true;
+    req.session.logged_in = true;
 
     res.status(200).json({user:{...userData.dataValues,userobjects:newObjects},message:'You are now logged in'});
   } catch (err) {
@@ -61,7 +61,7 @@ router.post('/login', async (req, res) => {
     }
     // Removed save call as not necessary
     req.session.user_id = userData.id;
-    req.session.loged_in = true;
+    req.session.logged_in = true;
 
     res.status(200).json({user:userData,message:'You are now logged in'});
 

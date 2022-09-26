@@ -1,5 +1,6 @@
 // Protects routes that should be protected
 const checkLogin = (req, res, next) => {
+  console.log(req.session);
   if (req.session.logged_in) {
       next();
       return;
