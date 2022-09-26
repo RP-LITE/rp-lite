@@ -25,7 +25,7 @@ Challenges.belongsTo(User,{
   as:'challenger',
   onDelete:'cascade'
 });
-User.belongsTo(Challenges,{
+User.hasMany(Challenges,{
   foreignKey:'target_id',
   as:'target',
   onDelete:'SET NULL'

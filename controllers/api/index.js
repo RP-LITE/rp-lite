@@ -2,18 +2,10 @@ const router = require("express").Router();
 const challengeRoutes = require('./challengeRoutes')
 const userRoutes = require("./userRoutes");
 const profileRoutes = require("./profileRoutes");
-
-// Protects routes that should be protected
-const checkLogin = (req, res, next) => {
-    if (req.session.logged_in) {
-        next();
-        return;
-    }
-    res.status(500).json('Not Logged in');
-}
+const auth = require('../../utils/auth');
 
 router.use("/users/", userRoutes);
-router.use("/profile/", checkLogin, profileRoutes);
-router.use('/challenges/', checkLogin, challengeRoutes);
+router.use("/profile/", auth.checkLogin , profileRoutes);
+router.use('/challenges/', auth.checkLogin , challengeRoutes);
 
 module.exports = router;
