@@ -11,10 +11,14 @@
         <div class="row">
             <div class="col-6">
                 {{!-- {{#with userobjects}} --}}
-                {{>creatureProfile}}</div>
+                {{>creatureProfile}}
+            </div>
             {{!-- {{/with}} --}}
             <div class="col-6">
-                {{>challengeProfile}}</div>
+                {{#with user.dataValues}}
+                    {{>challengeProfile}}
+                {{/with}}
+            </div>
         </div> <!-- row end -->
     </div>
 </div> <!-- Content wrapper above this line -->

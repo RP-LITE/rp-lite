@@ -7,18 +7,21 @@
     </p>
     {{!-- {{#if challenges.length}} --}}
     {{!-- {{#each challenges as | challenge}} --}}
-    <div class="w-400 mw-full" id="challenge-list">
-        <div class="card">
-            <h3 class="card-title">
-                Challenge 1
-            </h3>
-            <div class="text-center">
-                <a href="#" class="btn">Kick their ass!</a>
-            </div>
-        </div>
-    </div>
-    {{!-- {{/each}} --}}
-    {{!-- {{else}} --}}
-    {{!-- <h3>You currently have no challengers!</h2> --}}
-        {{!-- {{/if}} --}}
+    {{#each target}}
+    {{>challengeCard}}
+    {{/each}}
+    {{#each challenger}}
+    {{>challengeCard}}
+    {{/each}}
+    {{#unless target}}
+    {{#unless challenger}}
+    <h4>Challenge Someone to a charm off!</h4>
+    {{/unless}}
+    {{/unless}}
 </div>
+</div>
+{{!-- {{/each}} --}}
+{{!-- {{else}} --}}
+{{!-- <h3>You currently have no challengers!</h2> --}}
+    {{!-- {{/if}} --}}
+    </div>

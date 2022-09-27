@@ -56,19 +56,17 @@
       <div class="sidebar-menu">
         <h5 class="sidebar-title">RP-Lite</h5>
         <div class="sidebar-divider"></div>
-        <a href="./" class="sidebar-link sidebar-link-with-icon">
-          <span class="sidebar-icon text-white rounded-circle" style="background-color: var(--primary-color-red)">
-            <i class="" aria-hidden="true"></i>
-          </span>
+        <button class="btn btn-block home-btn" type="button">
+        <a href="./" class="sidebar-btn">
           Home
         </a>
+        </button> 
         {{#if logged_in}}
-        <a href="./profile" class="sidebar-link sidebar-link-with-icon">
-          <span class="sidebar-icon text-white rounded-circle" style="background-color: var(--primary-color-dark)">
-            <i class="" aria-hidden="true"></i>
-          </span>
+        <button class="btn btn-block profile-btn" type="button">
+        <a href="./profile" class="sidebar-btn">
           Profile
         </a>
+        </button>
         {{/if}}
         {{!-- <a href="./creatures.html" class="sidebar-link sidebar-link-with-icon">
           <span class="sidebar-icon text-white rounded-circle" style="background-color: var(--primary-color-yellow)">
@@ -81,19 +79,20 @@
         <div class="sidebar-divider"></div>
         <!-- Conditional logged in / logged out -->
         {{#if logged_in}}
-        <button class="logout-btn" id="logout-btn" type="button">Logout</button>
+        <button class="btn btn-block logout-btn" id="" type="button">
+          Logout
+        </button>
         {{else}}
-        <a href="#modal-1" class="sidebar-link sidebar-link-with-icon">
-          <span class="sidebar-icon text-white rounded-circle" style="background-color: var(--primary-color)">
-            <i class="" aria-hidden="true"></i>
-          </span>
+        <button class="btn btn-block" id="signin-btn"type="button">
+          <a href="#modal-1" class="sidebar-btn">
           Sign In
-        </a>
-        <a href="#modal-2" class="sidebar-link sidebar-link-with-icon">
-          <span class="sidebar-icon bg-success text-dark rounded-circle"> <i class="" aria-hidden="true"></i>
-          </span>
+          </a>
+        </button>
+        <button class="btn btn-block" id="signup-btn"type="button">
+          <a href="#modal-2" class="sidebar-btn">
           Sign Up
-        </a>
+          </a>
+        </button> 
         {{/if}}
       </div>
     </div>
