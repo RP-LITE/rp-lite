@@ -1,5 +1,5 @@
 <!-- Creature Column-->
-<div class="card">
+<div class="">
     <h2 class="content-title">
         CREATURE INDEX
     </h2>
@@ -37,11 +37,14 @@
                         </div>
                     </div>
                     <div class="progress battery m-0">
-                        <div class="progress-bar bg-success" role="progressbar" style="width: 60%"
+                        <div class="progress-bar bg-success" role="progressbar"
                             aria-valuenow="{{ experience }}" aria-valuemin="0"
                             aria-valuemax="{{ experience_threshold }}"></div>
                     </div>
+                    {{#if is_charming}}
                     <h6>Battle Status: {{ is_charming }}</h6>
+                    {{else}}
+                    {{/if}}
                     {{!-- <a href="#" class="btn">Kick their ass!</a> --}}
                 </div>
             </div>
