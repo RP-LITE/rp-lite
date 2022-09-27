@@ -1,37 +1,41 @@
 const router = require("express").Router();
 const { TimeoutError } = require("sequelize");
 const { User, UserObjects } = require("../../models");
-
+const {names} = require('../../utils/helper.js');
+console.log('names\n',names);
 router.post("/", async (req, res) => {
   try {
+    console.log('req',req.body);
     const userData = await User.create(req.body);
-    
+    console.log('userdata generated');
     const newObjects = await UserObjects.bulkCreate([
       {
         user_id: userData.id,
         rock_lvl: 1,
         type: 'rock',
-        img: '/public/portraits/rock.png'
+        name: names.rock()
       },
       {
         user_id: userData.id,
         paper_lvl: 1,
         type: 'paper',
-        img: '/public/portraits/paper.png'
+        name: names.paper()
       },
       {
         user_id: userData.id,
         scissor_lvl: 1,
         type: 'scissor',
-        img: '/public/portraits/scissor.png'
+        name: names.scissor()
       }
     ]);
+    console.log('objects created');
     // Removed save call as not necessary
     req.session.user_id = userData.id;
     req.session.logged_in = true;
-
+    console.log('session saved');
     res.status(200).json({user:{...userData.dataValues,userobjects:newObjects},message:'You are now logged in'});
   } catch (err) {
+    console.error(err);
     res.status(400).json(err.message);
   }
 });
