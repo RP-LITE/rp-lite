@@ -21,23 +21,23 @@
   {{> signup-modals}}
   <!-- Page wrapper start -->
   <div class="page-wrapper with-navbar with-sidebar with-navbar-fixed-bottom" data-sidebar-type="full-height"
-    style="background-color:var(--primary-color)">
+    style="background-image: linear-gradient(var(--primary-color-light),var(--primary-color-dark))">
 
     <!-- Navbar start -->
-    <nav class="navbar justify-content-between" style="background-color:var(--primary-color-light)">
+    <nav class="navbar justify-content-between">
       <div class="navbar-content">
-        <button class="btn btn-success" type="button" onclick="halfmoon.toggleSidebar()">
+        <button class="btn" type="button" onclick="halfmoon.toggleSidebar()">
           <i class="fa fa-bars" aria-hidden="true"></i>
         </button>
       </div>
-      <a href="./" class="navbar-brand">
+      <a href="./" class="navbar-brand" style="color: var(--primary-color-white)">
         <img src="..." alt="...">
         Rock-Dog, Paper-Squirrel, Scissor-Cat
       </a>
       <!-- Conditionally render login or logout links -->
       {{#if logged_in}}
       {{!-- <a href="/profile">profile</a> | --}}
-      <button class="logout-btn" id="logout-btn" type="button">Logout</button>
+      <button class="logout-btn" id="" type="button">Logout</button>
       {{else}}
       <ul class="navbar-nav d-none d-flex">
         <li class="nav-item active">
@@ -79,16 +79,16 @@
         <div class="sidebar-divider"></div>
         <!-- Conditional logged in / logged out -->
         {{#if logged_in}}
-        <button class="btn btn-block logout-btn" id="" type="button">
+        <button class="btn btn-block logout-btn" type="button">
           Logout
         </button>
         {{else}}
-        <button class="btn btn-block" id="signin-btn"type="button">
+        <button class="btn btn-block signin-btn"type="button">
           <a href="#modal-1" class="sidebar-btn">
           Sign In
           </a>
         </button>
-        <button class="btn btn-block" id="signup-btn"type="button">
+        <button class="btn btn-block signup-btn"type="button">
           <a href="#modal-2" class="sidebar-btn">
           Sign Up
           </a>
@@ -105,6 +105,7 @@
   <script src="https://cdn.jsdelivr.net/npm/halfmoon@1.1.1/js/halfmoon.min.js"></script>
   <script src="./js/login.js"></script>
   <script src="./js/logout.js"></script>
+  <script src="./js/profile.js"></script>
 </body>
 
 </html>

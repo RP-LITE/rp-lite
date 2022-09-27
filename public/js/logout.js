@@ -10,4 +10,4 @@ const logOutHandle = async () => {
     }
 }
 
-document.querySelectorAll('.logout-btn').addEventListener('click', logOutHandle);
+document.querySelectorAll('.logout-btn').forEach($btn => $btn.addEventListener('click', logOutHandle));

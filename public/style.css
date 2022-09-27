@@ -5,45 +5,39 @@
     --primary-color-dark: #03045e;
     --primary-color-red: #ff5400;
     --primary-color-blue: #023E8A;
-    --primary-color-yellow: #ff9e00;
+    --primary-color-yellow: #FFC05C;
     --primary-color-signin:#ff8500;
     --primary-color-signup:#ff9100;
     
 }
 
 .body {
-    background-color: var(--primary-color-blue)
+    background-color: var(--primary-color-blue);
 }
 
-;
-
 .battery {
-    height: 6rem;
+    margin-top: 20px;
+    height: 3rem;
     /* Before: 0.5rem (5px) */
     border-radius: 0.2rem;
     /* Before: 3.2rem (32px) */
 }
 
 .modal {
-    background-color: var(--primary-color-light)
+    background-image: linear-gradient( var(--primary-color-white),var(--primary-color-light));
 }
 
-;
-
-.nav {
-    background-color: var(--primary-color-dark)
+.navbar {
+    background-color: var(--primary-color-dark);
+    color: var(--primary-color-white);
 }
-
-;
 
 .sidebar {
-    background-color: var(--primary-color-blue)
+    background-color: var(--primary-color-blue);
 }
 
-;
-
 .card {
-    background-color: var(--primary-color-dark)
+    background-color: var(--primary-color-yellow);
 }
 
 .creatureCard {
@@ -59,8 +53,7 @@
     border-width: 6px;
     background: linear-gradient(#e6dcad, #cdbf86);
     padding: 5px;
-};
-
+}
 
 .cardHeaders {
     border-style: inset;
@@ -70,7 +63,7 @@
   line-height: 0;
 }
 
-.logout-btn {
+.creature-img {
     background-color: var(--primary-color-white);
     transition: 0.3s;
     text-align: center;   
@@ -81,30 +74,30 @@
     color: white;
 }
 
-#signin-btn {
+.signin-btn {
     background-color: var(--primary-color-white);
     transition: 0.3s;
     text-align: center;    
 }
 
 
-#signin-btn:hover {
+.signin-btn:hover {
     background-color: var(--primary-color-signin);
     color: white;
 }
 
 
-#signup-btn {
+.signup-btn {
     background-color: var(--primary-color-white);
     transition: 0.3s;
     text-align: center;    
 }
 
-#signup-btn:hover {
+.signup-btn:hover {
     background-color: var(--primary-color-red);
     color: white;
 }
-;
+
 .home-btn {
     background-color: var(--primary-color-white);
     transition: 0.3s;
@@ -115,7 +108,7 @@
     background-color: var(--primary-color-yellow);
     color: white;
 }
-;
+
 
 .profile-btn {
     background-color: var(--primary-color-white);
@@ -127,10 +120,10 @@
     background-color: var(--primary-color-yellow);
     color: white;
 }
-;
+
 
 .lvlText {
-    font-size: x-large;
+    font-size: small;
 }
 
 .creature-img {
