@@ -1,6 +1,28 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 const fs = require('fs/promises');
+const path = require('path');
+
+const assignImage = async (data) => {
+  console.log('======================');
+  console.log('===dirname',__dirname);
+  console.log('========newData=======');
+  console.log(data);
+  console.log('======================');
+  const newPath = path.resolve(__dirname,`../public/portraits/${data.type}/`);
+  console.log('===dirpath',newPath);
+  const files = await fs.opendir(newPath);
+  const fileArr = [];
+  for await(const dirent of files){
+    fileArr.push(dirent.name);
+  }
+  const chosenIndex = Math.floor(Math.random() * fileArr.length);
+  data.img = `./public/portraits/${data.type}/${fileArr[chosenIndex]}`;
+  console.log('===================================');
+  console.log('=====================new image path',data.img);
+  console.log('===================================');
+  return data;
+}
 
 class UserObjects extends Model {}
 
@@ -57,23 +79,10 @@ UserObjects.init(
   },
   {
     hooks:{
-      beforeCreate: async (newData) => {
-        const files = await fs.opendir(`../../public/portraits/${newData.type}`);
-        const fileArr = [];
-        console.log('======================');
-        console.log('========newData=======');
-        console.log(newdata);
-        console.log('======================');
-        for await(const dirent of dir){
-          fileArr.push(dirent.name);
-        }
-        const chosenIndex = Math.floor(Math.random() * fileArr.length);
-        newData.img = `./public/portraits/${newData.type}/${fileArr[chosenIndex]}`;
-        console.log('===================================');
-        console.log('=====================new image path',newData.img);
-        console.log('===================================');
-        return newData;
-      }
+      beforeBulkCreate: async (newData) => {
+        newData = await Promise.all(newData.map(assignImage))
+      },
+      beforeCreate: async (newData) => await assignImage(newData)
     },
     sequelize,
     timestamps: false,
