@@ -13,6 +13,7 @@ const userSeedData = require('./userSeedData.json');
       userObjects.push({
         user_id:user.id,
         type:'rock',
+        name:'A test object',
         rock_lvl: n,
         paper_lvl: Math.floor(n/4),
         img:'/public/portraits/rock.png'

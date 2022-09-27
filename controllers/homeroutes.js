@@ -74,9 +74,7 @@ router.get("/profile", async (req, res) => {
       }
     });
     const creatureIndex = creatures.map(creature => creature.get({ plain: true }));
-    const tempObject = {
-      id: 55
-    }
+  
     // console.log(userData.dataValues);
     res.render('profile', {
       user: userData,

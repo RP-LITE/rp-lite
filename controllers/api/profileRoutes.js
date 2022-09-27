@@ -4,25 +4,21 @@ const { checkLogin } = require("../../utils/auth");
 
 // Get all user's creatures
 
-// router.get('/', async (req, res) => {
-//   try {
-//     const userID = req.session.user_id;
-//     const creatures = await UserObjects.findAll({
-//       where: {
-//         user_id: userID
-//       }
-//     });
-//     const creatureIndex = creatures.map(creature => creature.get({ plain: true }));
+router.get('/', async (req, res) => {
+  try {
+    const userID = req.session.user_id;
+    const creatures = await UserObjects.findAll({
+      where: {
+        user_id: userID
+      }
+    });
 
-//     res.render('creatureProfile', {
-//       creatureIndex,
-//       logged_in: req.session.logged_in
-//     });
-//   } catch (err) {
-//     console.log(err);
-//     res.status(500).json(err.message);
-//   }
-// });
+    res.json(creatures);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err.message);
+  }
+});
 
 router.post('/:type', async (req, res) => {
   try {
@@ -34,8 +30,7 @@ router.post('/:type', async (req, res) => {
     const newObject = await UserObjects.create({
       user_id: req.session.user_id,
       [`${type}_lvl`]: 1,
-      type,
-      img: `/public/portratis/${type}.png`
+      type
     });
     res.json(newObject);
   } catch (err) {

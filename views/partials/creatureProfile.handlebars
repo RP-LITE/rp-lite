@@ -8,51 +8,48 @@
     {{#if creature.length}}
     {{#each creature}}
     <div class="w-400 mw-full">
-        <div class="card">
-            <h3 class="card-title">
-                {{ type }}
-            </h3>
-            <img src="" alt="">
-            <h2></h2>
+        <div class="card creatureCard">
+            <div class="cardHeaders">
+                <h4 class="card-title">
+                    {{ name }}
+                </h4>
+                <h6>Type: {{ type }}</h6>
+            </div>
+
+            <img class ="creature-img" src="{{ img }}" alt="">
+            
             <div id="objectLvls">
                 <div class="">
-                    <div class="">
-                        <h6 class="m-0">Rock Lvl: {{ rock_lvl }}
-                        </h6>
+                    <div class="lvlText">
+                        <p class="m-0">Rock Lvl: {{ rock_lvl }}
+                        </p>
+                    </div>
+                    <div>
+                        <div class="lvlText">
+                            <p class="m-0">Paper Lvl: {{ paper_lvl }}
+                            </p>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="lvlText">
+                            <p class="m-0">Scissor Lvl: {{ scissor_lvl }}
+                            </p>
+                        </div>
                     </div>
                     <div class="progress battery m-0">
-                        <div class="progress-bar bg-success h-auto" role="progressbar" style="width: 60%"
-                            aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar bg-success" role="progressbar" style="width: 60%"
+                            aria-valuenow="{{ experience }}" aria-valuemin="0"
+                            aria-valuemax="{{ experience_threshold }}"></div>
                     </div>
+                    <h6>Battle Status: {{ is_charming }}</h6>
+                    {{!-- <a href="#" class="btn">Kick their ass!</a> --}}
                 </div>
-                <div>
-                    <div class="">
-                        <h6 class="m-0">Paper Lvl: {{ paper_lvl }}
-                        </h6>
-                    </div>
-                    <div class="progress battery m-0">
-                        <div class="progress-bar bg-success" role="progressbar" style="width: 60%" aria-valuenow="20"
-                            aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                </div>
-                <div>
-                    <div class="">
-                        <h6 class="m-0">Scissor Lvl: {{ scissor_lvl }}
-                        </h6>
-                    </div>
-                    <div class="progress battery m-0">
-                        <div class="progress-bar bg-success" role="progressbar" style="width: 60%" aria-valuenow="60"
-                            aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                </div>
-                <h6>Battle Status: {{ is_charming }}</h6>
-                {{!-- <a href="#" class="btn">Kick their ass!</a> --}}
             </div>
         </div>
-    </div>
+
+    </div> <!-- creature column end-->
     {{/each}}
     {{else}}
     <h3>You currently have no creatures!</h2>
-        {{/if}}
-
-</div> <!-- creature column end-->
+    {{/if}}
+</div>
