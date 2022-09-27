@@ -1,50 +1,139 @@
 :root {
-    --primary-color: #3F88C5;
-    --primary-color-light: #A2AEBB;
-    --primary-color-dark: #363537;
-    --primary-color-red: #D00000;
-    --primary-color-blue: #2D5D7B;
-    --primary-color-yellow: #ffba08;
-    --progress-height: 6rem;
+    --primary-color: #0077b6;
+    --primary-color-light: #00b4d8;
+    --primary-color-white: #F0F3F9;
+    --primary-color-dark: #03045e;
+    --primary-color-red: #ff5400;
+    --primary-color-blue: #023E8A;
+    --primary-color-yellow: #ff9e00;
+    --primary-color-signin:#ff8500;
+    --primary-color-signup:#ff9100;
+    
 }
 
 .body {
-    background-color: var(--basic)
+    background-color: var(--primary-color-blue)
 }
 
 ;
 
 .battery {
-    --progress-height: 6rem;
+    height: 6rem;
     /* Before: 0.5rem (5px) */
-    --progress-border-radius: 0.2rem;
+    border-radius: 0.2rem;
     /* Before: 3.2rem (32px) */
 }
 
 .modal {
-    background-color: var(--light)
+    background-color: var(--primary-color-light)
 }
 
 ;
 
 .nav {
-    background-color: var(--light)
+    background-color: var(--primary-color-dark)
 }
 
 ;
 
 .sidebar {
-    background-color: var(--light)
+    background-color: var(--primary-color-blue)
 }
-
-;
-
-.content-wrapper {}
 
 ;
 
 .card {
-    background-color: var(--basic)
+    background-color: var(--primary-color-dark)
 }
 
+.creatureCard {
+    /* border-style: outset; */
+    border-color: rgb(77, 64, 64);
+    border-width: 6px;
+    background: linear-gradient(#e6dcad, rgb(136, 126, 88));
+    padding: 5px;
+}
+
+.challengeCard {
+    border-color: rgb(51, 40, 40);
+    border-width: 6px;
+    background: linear-gradient(#e6dcad, #cdbf86);
+    padding: 5px;
+};
+
+
+.cardHeaders {
+    border-style: inset;
+  border-color: #eae2a6;
+  border-width: 3px;
+  background: linear-gradient(#e6dcad, #B76E79);
+  line-height: 0;
+}
+
+.logout-btn {
+    background-color: var(--primary-color-white);
+    transition: 0.3s;
+    text-align: center;   
+}
+
+.logout-btn:hover {
+    background-color: var(--primary-color-dark);
+    color: white;
+}
+
+#signin-btn {
+    background-color: var(--primary-color-white);
+    transition: 0.3s;
+    text-align: center;    
+}
+
+
+#signin-btn:hover {
+    background-color: var(--primary-color-signin);
+    color: white;
+}
+
+
+#signup-btn {
+    background-color: var(--primary-color-white);
+    transition: 0.3s;
+    text-align: center;    
+}
+
+#signup-btn:hover {
+    background-color: var(--primary-color-red);
+    color: white;
+}
 ;
+.home-btn {
+    background-color: var(--primary-color-white);
+    transition: 0.3s;
+    text-align: center;    
+}
+
+.home-btn:hover {
+    background-color: var(--primary-color-yellow);
+    color: white;
+}
+;
+
+.profile-btn {
+    background-color: var(--primary-color-white);
+    transition: 0.3s;
+    text-align: center;    
+}
+
+.profile-btn:hover {
+    background-color: var(--primary-color-yellow);
+    color: white;
+}
+;
+
+.lvlText {
+    font-size: x-large;
+}
+
+.creature-img {
+    max-width: fit-content;
+    height: auto;
+}
