@@ -20,6 +20,17 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.get('/:id',async (req,res)=>{
+  try {
+    const creature = await UserObjects.findByPk(req.params.id);
+
+    res.json(creature);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err.message);
+  }
+})
+
 router.post('/:type', async (req, res) => {
   try {
     const type = req.params.type;

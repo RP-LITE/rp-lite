@@ -7,7 +7,7 @@
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
   <meta name="viewport" content="width=device-width" />
   <link rel="icon" href="#">
-  <title>RP-Lite</title>
+  <title>Charming Pets</title>
 
   <!-- Halfmoon CSS -->
   <link href="https://cdn.jsdelivr.net/npm/halfmoon@1.1.1/css/halfmoon.min.css" rel="stylesheet" />
@@ -37,15 +37,15 @@
       </div>
       <a href="./" class="navbar-brand" style="color: var(--primary-color-white)">
         <img src="portraits/icons/rock-paper-scissors.png" alt="rock-paper-scissors">
-        Rock-Dog, Paper-Squirrel, Scissor-Cat
+        RockDog, PaperSquirrel, ScissorCat
       </a>
       <!-- Conditionally render login or logout links -->
       {{#if logged_in}}
       {{!-- <a href="/profile">profile</a> | --}}
-      <button class="logout-btn" id="" type="button">Logout</button>
+      <button class="logout-btn" type="button">Logout</button>
       {{else}}
       <ul class="navbar-nav d-none d-flex">
-        <li class="nav-item active">
+        <li class="nav-item">
           <a href="#modal-1" class="nav-link">Sign In</a>
         </li>
         <li class="nav-item">
@@ -57,7 +57,7 @@
     <!-- Navbar end -->
 
     <!-- Sidebar start -->
-    <div class="sidebar" style="background-color: var(--primary-color-blue)">
+    <div class="sidebar">
       <div class="sidebar-menu">
         <h5 class="sidebar-title">RP-Lite</h5>
         <div class="sidebar-divider"></div>

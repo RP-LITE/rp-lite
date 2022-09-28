@@ -36,11 +36,9 @@
 }
 
 .modal-content {
-    background: linear-gradient(#e6dcad, #B76E79);
+    background: linear-gradient(var(--primary-color-yellow), var(--primary-color-signin));
     border-radius: 10px;
     border-style: ridge;
-     
-    
 }
 
 .modal-btn {
@@ -66,8 +64,16 @@
     font-size: medium;
 }
 
+.nav-link {
+    color: var(--primary-color-red);
+}
+
+.nav-link:hover {
+    color: var(--primary-color-yellow)
+}
+
 .sidebar {
-    background: linear-gradient(var(--primary-color),var(--primary-color-dark));
+    background: linear-gradient(var(--primary-color),var(--primary-color-blue));
     font-family: 'Odibee Sans', cursive;
     font-size: large;
 }
@@ -108,7 +114,7 @@
 .challengeCard {
     border-color: rgb(77, 64, 64);
     border-width: 6px;
-    background: linear-gradient(#e6dcad, rgb(136, 126, 88));
+    background: linear-gradient(rgb(136, 126, 88), #e6dcad);
     padding: 5px;
 }
 
@@ -124,7 +130,7 @@
 
 .btn {
     font-family: 'Odibee Sans', cursive;
-    background: linear-gradient(var(--primary-color-yellow),var(--primary-color-red))
+    background: linear-gradient(var(--primary-color-yellow),var(--primary-color-red));
     /* background: linear-gradient(#e6dcad, #B76E79); */
     
 }
@@ -132,6 +138,12 @@
 .challenge-title{
     font-family: 'Odibee Sans', cursive;
     text-align: center;
+}
+
+.challenge-row {
+    gap: 1rem;
+    justify-content: space-around;
+    flex-wrap: wrap;
 }
 
 .cardHeaders {
@@ -165,6 +177,7 @@
     background: linear-gradient(#e6dcad, #B76E79);
     /* line-height: 0; */
     width: 100%;
+    padding-left: 10px;
 }
 
 #welcome {
@@ -189,24 +202,28 @@
     
 } */
 
-/* .status-icon {
-    
-} */
+.status-icon {
+    max-width: 25px;
+    max-height: 30px;
+}
 
 .sidebar-btn {
-    background-color: var(--primary-color-white);
-    transition: 0.3s;
+    background: linear-gradient(var(--primary-color-yellow), var(--primary-color-signup));
     text-align: center;
+    border-color: var(--primary-color-white);
+    border-radius: 5px;
+    border-width: 1px;
     
 }
 
 .sidebar-btn:hover {
     background-color: var(--primary-color-dark);
     color: white;
+    text-align: center;
     border-color: var(--primary-color-white);
     border-radius: 5px;
     border-width: 2px;
-    
+    transition: 0.5s;
 }
 
 
@@ -214,9 +231,6 @@
     font-size: medium;
 }
 
-.type-levels {
-    border-width: 1px;
-}
 
 .sidebar-title {
     font-size:larger;
