@@ -9,43 +9,45 @@
     {{#each creature}}
     <div class="w-400 mw-full">
         <div class="card creatureCard">
-            <div class="cardHeaders">
-                <h4 class="card-title">
+            <div class="cardHeaders d-inline-flex justify-content-around align-items-center">
+                <h3 class="card-title">
                     {{ name }}
-                </h4>
-                <h6>Type: {{ type }}</h6>
+                </h3>
+                {{!-- <h6>Type: {{ type }}</h6>
+                --}}
+                {{#if type}}
+                <img class="typeIcons {{ type }}" src="portraits/icons/{{ type }}.png" alt="">
+                {{/if}}
             </div>
 
-            <img class ="creature-img" src="{{ img }}" alt="">
-            
+            <img class="creature-img" src="{{ img }}" alt="">
+
             <div id="objectLvls">
-                <div class="">
-                    <div class="lvlText">
+                <div class="type-levels">
+                    <div class="lvl-text">
                         <p class="m-0">Rock Lvl: {{ rock_lvl }}
                         </p>
                     </div>
                     <div>
-                        <div class="lvlText">
+                        <div class="lvl-text">
                             <p class="m-0">Paper Lvl: {{ paper_lvl }}
                             </p>
                         </div>
                     </div>
                     <div>
-                        <div class="lvlText">
+                        <div class="lvl-text">
                             <p class="m-0">Scissor Lvl: {{ scissor_lvl }}
                             </p>
                         </div>
                     </div>
                     <div class="progress battery m-0">
-                        <div class="progress-bar bg-success" role="progressbar"
-                            aria-valuenow="{{ experience }}" aria-valuemin="0"
-                            aria-valuemax="{{ experience_threshold }}"></div>
+                        <div class="progress-bar bg-success" role="progressbar" aria-valuenow="{{ experience }}"
+                            aria-valuemin="0" aria-valuemax="{{ experience_threshold }}"></div>
                     </div>
                     {{#if is_charming}}
                     <h6>Battle Status: {{ is_charming }}</h6>
                     {{else}}
                     {{/if}}
-                    {{!-- <a href="#" class="btn">Kick their ass!</a> --}}
                 </div>
             </div>
         </div>
@@ -54,5 +56,5 @@
     {{/each}}
     {{else}}
     <h3>You currently have no creatures!</h2>
-    {{/if}}
+        {{/if}}
 </div>
