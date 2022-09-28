@@ -3,18 +3,17 @@
 
 {{!-- {{#with user.dataValues}} --}}
 <div class="content-wrapper">
-    <div>
-        <h2>Welcome, {{user.dataValues.user_name}}!</h2>
-
+    <div class="m-10">
+        <h1 id="welcome">Welcome, {{user.dataValues.user_name}}!</h1>
     </div>
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-6">
+        <div class="">
+            <div class="">
                 {{!-- {{#with userobjects}} --}}
                 {{>creatureProfile}}
             </div>
             {{!-- {{/with}} --}}
-            <div class="col-6">
+            <div class="">
                 {{#with user.dataValues}}
                     {{>challengeProfile}}
                 {{/with}}

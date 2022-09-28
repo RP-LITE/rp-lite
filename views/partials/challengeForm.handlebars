@@ -1,0 +1,20 @@
+{{!-- File for the challenge form creation server side --}}
+<div class="form-group">
+  <label class="required">Your cutest creature:</label>
+  {{#each creatures as | creature |}}
+    <label class="creature-select" for="creature-{{ id }}">
+      <h3 class="card-title">
+          {{ name }}
+      </h3>
+      {{!-- <h6>Type: {{ type }}</h6>
+      --}}
+      {{#if type}}
+      <div class="overlay">
+        <img class="typeIcons {{ type }}" src="portraits/icons/{{ type }}.png" alt="">
+        <span class="overlay__text">{{ typeLevel creature }}</span>
+      </div>
+      {{/if}}
+    </label>
+    <input type="radio" id="creature-{{ id }}" name="creature_choice" value="{{ id }}" hidden>
+  {{/each}}
+</div>

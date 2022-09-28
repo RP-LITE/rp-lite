@@ -1,12 +1,25 @@
 const router = require("express").Router();
 const { TimeoutError, Op } = require("sequelize");
 const { User, Challenges, UserObjects } = require("../../models");
+const hbs = require('../../utils/handlebarHelpers');
 
 const helpers = require('./challengeHelpers');
+
+let challengeModal;
+(async ()=>{
+  const challengeForm = await fs.readFile(path.join(__dirname,'./../views/partials/challengeForm.handlebars'),'utf8');
+  challengeModal = hbs.compile(challengeForm);
+});
 
 // Searches for users to challenge
 router.get('/search', async (req, res) => {
   try {
+    const creatures = await UserObjects.findAll({
+      where:{
+        is_charming:false
+      },
+      raw:true
+    });
     const users = await User.findAll({
       where: {
         id: {
@@ -17,7 +30,7 @@ router.get('/search', async (req, res) => {
         exclude: ['password', 'email']
       }
     });
-    res.json(users);
+    res.send(challengeModal({creatures,users}));
   } catch (err) {
     console.log(err);
     res.json(err.message);
