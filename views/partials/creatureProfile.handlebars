@@ -1,13 +1,11 @@
 <!-- Creature Column-->
-<div class="">
-    <h2 class="content-title">
-        CREATURE INDEX
-    </h2>
-    <p>
-    </p>
+<h2 class="content-title profile-titles">
+    CREATURE INDEX
+</h2>
+<div class="creature-row row">
     {{#if creature.length}}
     {{#each creature}}
-    <div class="w-400 mw-full">
+    <div class="w-400 mw-full col-sm">
         <div class="card creatureCard">
             <div class="cardHeaders d-inline-flex justify-content-around align-items-center">
                 <h3 class="card-title">
@@ -16,14 +14,15 @@
                 {{!-- <h6>Type: {{ type }}</h6>
                 --}}
                 {{#if type}}
-                <img class="typeIcons {{ type }}" src="portraits/icons/{{ type }}.png" alt="">
+                <img class="typeIcons {{ type }}" src="portraits/icons/{{ type }}.png" alt="{{ type }} icon">
                 {{/if}}
             </div>
+            <div class="creature-img-container">
+                <img class="creature-img" src="{{ img }}" alt="">
+            </div>
 
-            <img class="creature-img" src="{{ img }}" alt="">
-
-            <div id="objectLvls">
-                <div class="type-levels">
+            <div id="creature-info">
+                <div id="type-levels">
                     <div class="lvl-text">
                         <p class="m-0">Rock Lvl: {{ rock_lvl }}
                         </p>
@@ -40,21 +39,27 @@
                             </p>
                         </div>
                     </div>
-                    <div class="progress battery m-0">
-                        <div class="progress-bar bg-success" role="progressbar" aria-valuenow="{{ experience }}"
-                            aria-valuemin="0" aria-valuemax="{{ experience_threshold }}"></div>
-                    </div>
-                    {{#if is_charming}}
-                    <h6>Battle Status: {{ is_charming }}</h6>
-                    {{else}}
-                    {{/if}}
                 </div>
+                <div class="progress battery m-0">
+                    <div class="progress-bar bg-success" role="progressbar" aria-valuenow="{{ experience }}"
+                        aria-valuemin="0" aria-valuemax="{{ experience_threshold }}"></div>
+                </div>
+                {{#if is_charming}}
+                <div class="is-charming d-flex">
+                <h6>Status: Engaged</h6>
+                <img class="status-icon {{ is_charming }}" src="portraits/icons/{{ is_charming }}.png" alt="engaged">
+                </div>
+                {{else}}
+                <div class="is-charming d-flex">
+                <h6>Status: Available</h6>
+                <img class="status-icon {{ is-charming }}" src="portraits/icons/false.png" alt="available">
+                </div>
+                {{/if}}
+
             </div>
         </div>
 
     </div> <!-- creature column end-->
     {{/each}}
-    {{else}}
-    <h3>You currently have no creatures!</h2>
-        {{/if}}
+    {{/if}}
 </div>
