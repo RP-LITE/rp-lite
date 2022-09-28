@@ -9,7 +9,7 @@
  
 
 </span>
-<!-- PROJECT LOGO -->
+<img src="/public/portraits/icons/rock-paper-scissors.png/">
 <br />
 <div align="center">
 <a href="https://github.com/RP-LITE/rp-lite">
@@ -55,8 +55,8 @@ TODO
 <!-- ABOUT THE PROJECT -->
 
 ## About The Project
-![Product Name Screen Shot][product-screenshot]
-TODO
+![Product Name Screen Shot][product-screenshot]<br>
+The game is very self-explanatory, but also kinda not... It's a rogue-lite (we wish) version of rock-paper-scissors featuring your pets! Rock (Dog) > Scissor (Cat) > Paper (Squirrel) > Rock (Dog) and so forth.
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ### Built With

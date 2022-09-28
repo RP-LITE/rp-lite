@@ -23,19 +23,12 @@ const updateChallengers = async (io,data,del) => {
       user_id:data.target_id
     }
   });
-  console.log('data',data);
   const challengerConnections = await Connection.findAll({
     where:{
       user_id:data.challenger_id
     }
   });
   const challengeTemplate = hbs.compile(challengeCard)
-  const challengeMsg = data.winner ?
-    'completedChallenge' :
-    'sentChallenge';
-  const targetMsg = data.winner ?
-    'completedChallenge' :
-    'receivedChallenge';
   const involved = [...targetConnections,...challengerConnections];
   for await(connection of involved){
     const active = io.sockets.sockets.get(connection.id)
