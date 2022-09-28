@@ -1,22 +1,27 @@
 <!-- Challenge column start -->
 <div class="" id="challenges">
-    <h2 class="content-title profile-titles" id="challenge-title">
+    <h2 class="content-title profile-titles" id="challenge-title" style="font-family:'Press Start 2P',cursive">
         CHALLENGES
     </h2>
-    <p>
-        <button class="btn" id="start-challenge">Charm Someone!</button>
-    </p>
     {{!-- {{#if challenges.length}} --}}
     {{!-- {{#each challenges as | challenge}} --}}
+    <div class="challenge-row row"  id="challenge-list">
     {{#each target}}
+    {{#with dataValues}}
     {{>challengeCard}}
+    {{/with}}
     {{/each}}
-    {{#each challenger}}
+    {{#each challenger as | origChal |}}
+    {{#with dataValues as | challenge |}}
     {{>challengeCard}}
+    {{/with}}
     {{/each}}
+    </div>
     {{#unless target}}
     {{#unless challenger}}
-    <h4>Challenge Someone to a charm off!</h4>
+       <p>
+        <button class="btn" id="start-challenge">Challenge Someone to a Charm Off!</button>
+        </p>
     {{/unless}}
     {{/unless}}
 </div>

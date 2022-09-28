@@ -1,14 +1,14 @@
 <!-- Creature Column-->
-<h2 class="content-title profile-titles">
+<h2 class="content-title profile-titles" style="font-family:'Press Start 2P',cursive">
     CREATURE INDEX
 </h2>
-<div class="creature-row row">
+<div id="creature-row" class="creature-row row">
     {{#if creature.length}}
     {{#each creature}}
     <div class="w-400 mw-full col-sm">
         <div class="card creatureCard">
             <div class="cardHeaders d-inline-flex justify-content-around align-items-center">
-                <h3 class="card-title">
+                <h3 class="card-title text-capitalize">
                     {{ name }}
                 </h3>
                 {{!-- <h6>Type: {{ type }}</h6>
@@ -46,13 +46,16 @@
                 </div>
                 {{#if is_charming}}
                 <div class="is-charming d-flex">
-                <h6>Status: Engaged</h6>
-                <img class="status-icon {{ is_charming }}" src="portraits/icons/{{ is_charming }}.png" alt="engaged">
+                <h5>Status: Currently Engaged</h5>
+                {{!-- <img class="status-icon {{ is_charming }}" src="portraits/icons/true.png" alt="engaged"> --}}
                 </div>
                 {{else}}
-                <div class="is-charming d-flex">
-                <h6>Status: Available</h6>
-                <img class="status-icon {{ is-charming }}" src="portraits/icons/false.png" alt="available">
+                <div class="is-charming d-flex justify-content-around">
+                <h5>Status: <span>Available</span> </h5>
+                {{!-- <img class="status-icon {{ is-charming }}" src="portraits/icons/false.png" alt="available"> --}}
+                <button class="d-flex btn p-5 align-self-center border-0" data-creature="{{ id }}" style="height:auto;">
+                    <img style="width:4.4rem;" src="portraits/icons/rock-paper-scissors.png" alt="Send to Charm">
+                </button>
                 </div>
                 {{/if}}
 
