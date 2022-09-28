@@ -11,6 +11,8 @@
 
   <!-- Halfmoon CSS -->
   <link href="https://cdn.jsdelivr.net/npm/halfmoon@1.1.1/css/halfmoon.min.css" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Odibee+Sans&family=Press+Start+2P&display=swap" rel="stylesheet">
   <link href="./style.css" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.6.1.min.js"
     integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
@@ -57,13 +59,13 @@
         <h5 class="sidebar-title">RP-Lite</h5>
         <div class="sidebar-divider"></div>
         <button class="btn btn-block home-btn" type="button">
-        <a href="./" class="sidebar-btn">
+        <a href="./" id="linkcolor" style="color: black">
           Home
         </a>
         </button> 
         {{#if logged_in}}
         <button class="btn btn-block profile-btn" type="button">
-        <a href="./profile" class="sidebar-btn">
+        <a href="./profile" style="color: black">
           Profile
         </a>
         </button>
@@ -84,12 +86,12 @@
         </button>
         {{else}}
         <button class="btn btn-block signin-btn"type="button">
-          <a href="#modal-1" class="sidebar-btn">
+          <a href="#modal-1" style="color: black">
           Sign In
           </a>
         </button>
         <button class="btn btn-block signup-btn"type="button">
-          <a href="#modal-2" class="sidebar-btn">
+          <a href="#modal-2" style="color: black">
           Sign Up
           </a>
         </button> 

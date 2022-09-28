@@ -13,6 +13,7 @@
 
 .body {
     background-color: var(--primary-color-blue);
+    
 }
 
 .battery {
@@ -30,14 +31,19 @@
 .navbar {
     background-color: var(--primary-color-dark);
     color: var(--primary-color-white);
+    font-family: 'Press Start 2P', cursive;
+    font-size: medium;
 }
 
 .sidebar {
     background-color: var(--primary-color-blue);
+    font-family: 'Odibee Sans', cursive;
+    font-size: large;
 }
 
 .card {
     background-color: var(--primary-color-yellow);
+    font-family: 'Odibee Sans', cursive;
 }
 
 .creatureCard {
@@ -82,7 +88,7 @@
 
 
 .signin-btn:hover {
-    background-color: var(--primary-color-signin);
+    background-color: var(--primary-color-dark);
     color: white;
 }
 
@@ -94,7 +100,7 @@
 }
 
 .signup-btn:hover {
-    background-color: var(--primary-color-red);
+    background-color: var(--primary-color-dark);
     color: white;
 }
 
@@ -105,7 +111,7 @@
 }
 
 .home-btn:hover {
-    background-color: var(--primary-color-yellow);
+    background-color: var(--primary-color-dark);
     color: white;
 }
 
@@ -117,10 +123,9 @@
 }
 
 .profile-btn:hover {
-    background-color: var(--primary-color-yellow);
+    background-color: var(--primary-color-dark);
     color: white;
 }
-
 
 .lvlText {
     font-size: small;
@@ -129,4 +134,9 @@
 .creature-img {
     max-width: fit-content;
     height: auto;
+}
+
+.sidebar-title {
+    font-size:larger;
+    color: var(--primary-color-white);
 }
