@@ -17,7 +17,7 @@ const assignImage = async (data) => {
     fileArr.push(dirent.name);
   }
   const chosenIndex = Math.floor(Math.random() * fileArr.length);
-  data.img = `./public/portraits/${data.type}/${fileArr[chosenIndex]}`;
+  data.img = `portraits/${data.type}/${fileArr[chosenIndex]}`;
   console.log('===================================');
   console.log('=====================new image path',data.img);
   console.log('===================================');
