@@ -6,9 +6,9 @@
     --primary-color-red: #ff5400;
     --primary-color-blue: #023E8A;
     --primary-color-yellow: #FFC05C;
-    --primary-color-signin:#ff8500;
-    --primary-color-signup:#ff9100;
-    
+    --primary-color-signin: #ff8500;
+    --primary-color-signup: #ff9100;
+
 }
 
 .body {
@@ -24,7 +24,7 @@
 }
 
 .modal {
-    background-image: linear-gradient( var(--primary-color-white),var(--primary-color-light));
+    background-image: linear-gradient(var(--primary-color-white), var(--primary-color-light));
 }
 
 .navbar {
@@ -39,6 +39,10 @@
 .card {
     background-color: var(--primary-color-yellow);
 }
+
+/* .card-title {
+    font-size: x-large;
+} */
 
 .creatureCard {
     /* border-style: outset; */
@@ -57,16 +61,17 @@
 
 .cardHeaders {
     border-style: inset;
-  border-color: #eae2a6;
-  border-width: 3px;
-  background: linear-gradient(#e6dcad, #B76E79);
-  line-height: 0;
+    border-color: #eae2a6;
+    border-width: 3px;
+    background: linear-gradient(#e6dcad, #B76E79);
+    line-height: 0;
+    width: 100%;
 }
 
 .creature-img {
     background-color: var(--primary-color-white);
     transition: 0.3s;
-    text-align: center;   
+    text-align: center;
 }
 
 .logout-btn:hover {
@@ -77,7 +82,7 @@
 .signin-btn {
     background-color: var(--primary-color-white);
     transition: 0.3s;
-    text-align: center;    
+    text-align: center;
 }
 
 
@@ -90,7 +95,7 @@
 .signup-btn {
     background-color: var(--primary-color-white);
     transition: 0.3s;
-    text-align: center;    
+    text-align: center;
 }
 
 .signup-btn:hover {
@@ -101,7 +106,7 @@
 .home-btn {
     background-color: var(--primary-color-white);
     transition: 0.3s;
-    text-align: center;    
+    text-align: center;
 }
 
 .home-btn:hover {
@@ -113,7 +118,7 @@
 .profile-btn {
     background-color: var(--primary-color-white);
     transition: 0.3s;
-    text-align: center;    
+    text-align: center;
 }
 
 .profile-btn:hover {
@@ -122,11 +127,24 @@
 }
 
 
-.lvlText {
+.lvl-text {
     font-size: small;
+}
+
+.type-levels {
+    border-width: 1px;
 }
 
 .creature-img {
     max-width: fit-content;
     height: auto;
+}
+
+.typeIcons {
+    max-width: 35px;
+    max-height: 40px;
+}
+
+.typeIcons.scissor {
+    filter: drop-shadow(1px 1px 0px #000) drop-shadow(-1px -1px 0px #000) drop-shadow(-1px 1px 0px #000) drop-shadow(1px -1px 0px #000);
 }
