@@ -1,5 +1,4 @@
 const http = require('http');
-const https = require('https');
 const { Server } = require('socket.io');
 
 const { Connection } = require('../models');
@@ -20,8 +19,7 @@ const socketWrapper = middleware => (socket, next) => middleware(socket.request,
  */
 const createIoInterface = (app, session) => {
   // Use https when deployed live
-  const httpType = process.env.JAWSDB_URL ? https : http;
-  const server = httpType.createServer(app);
+  const server = http.createServer(app);
   const io = new Server(server);
 
   io.use(socketWrapper(session));
