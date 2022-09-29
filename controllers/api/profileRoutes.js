@@ -1,7 +1,24 @@
 const router = require("express").Router();
 const { UserObjects, User } = require("../../models");
 const { checkLogin } = require("../../utils/auth");
+const fs = require('fs/promises');
+const path = require('path');
 
+const hbs = require('handlebars');
+
+const hbHelpers = require('../../utils/helper');
+// Register the handlebar helpers
+Object.entries(hbHelpers).forEach(([k,f])=>hbs.registerHelper(k,f));
+let multiClassModal;
+let creatureCardTemplate;
+(async ()=>{
+  // const multiClassForm = await fs.readFile(path.join(__dirname,'../../views/partials/multiClassForm.handlebars'),'utf8');
+  // multiClassModal = hbs.compile(multiClassForm);
+  const creatureCard = await fs.readFile(path.join(__dirname,'../../views/partials/creatureCard.handlebars'),'utf8');
+  hbs.registerPartial('creatureCard',creatureCard);
+  const creatureCardWrap = await fs.readFile(path.join(__dirname,'../../views/partials/creatureCardWrap.handlebars'),'utf8');
+  creatureCardTemplate = hbs.compile(creatureCardWrap);
+})();
 // Get all user's creatures
 
 router.get('/', async (req, res) => {
@@ -114,7 +131,13 @@ router.put('/:id', async (req, res) => {
     }
     creature.set(setObj);
     await creature.save();
-    res.json(creature);
+    const newCard = creatureCardTemplate(creature);
+    console.log('====================');
+    console.log('====================');
+    console.log('newCard',newCard);
+    console.log('====================');
+    console.log('====================');
+    res.send(newCard);
   } catch (err) {
     console.log(err);
     res.status(500).json(err.message);

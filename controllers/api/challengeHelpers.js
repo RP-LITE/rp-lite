@@ -67,6 +67,7 @@ const resolve = async (challenge) => {
   } else {
     awardXP(defender, challenger);
   }
+  challenger.is_charming = false;
 };
 
 module.exports = { resolve };

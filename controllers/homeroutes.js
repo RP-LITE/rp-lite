@@ -50,6 +50,9 @@ router.get('/', (req, res) => {
 router.get("/profile", async (req, res) => {
   try {
     // console.log('getting profile');
+    if(!req.session.user_id){
+      return res.redirect('/');
+    }
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ['password'] },
       include: [
@@ -57,10 +60,53 @@ router.get("/profile", async (req, res) => {
         {
           model: Challenges,
           as: 'challenger',
+          include:[
+            {
+              model: User,
+              as: 'challenger',
+              attributes: { exclude: ['password', 'email'] },
+              raw:true
+            },
+            {
+              model: User,
+              as: 'target',
+              attributes: { exclude: ['password', 'email'] },
+              raw:true
+            },
+            {
+              model: UserObjects,
+              as: 'attacker',
+              raw:true
+            }
+          ]
         },
         {
           model: Challenges,
           as: 'target',
+          include:[
+            {
+              model: User,
+              as: 'challenger',
+              attributes: { exclude: ['password', 'email'] },
+              raw:true
+            },
+            {
+              model: User,
+              as: 'target',
+              attributes: { exclude: ['password', 'email'] },
+              raw:true
+            },
+            {
+              model: UserObjects,
+              as: 'attacker',
+              raw:true
+            },
+            {
+              model: UserObjects,
+              as: 'defender',
+              raw:true
+            }
+          ]
         }
       ],
       attributes: {

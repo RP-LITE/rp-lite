@@ -1,13 +1,15 @@
-const { Connection } = require('../models');
+const { Connection, User } = require('../models');
 const helpers = require('../utils/helper');
 const hbs = require('handlebars');
 const fs = require('fs/promises');
 const path = require('path');
 
-
+let socketPartial;
 let challengeCard;
 (async () => {
+  socketPartial = await fs.readFile(path.join(__dirname,'../views/partials/socketChallengeCard.handlebars'),'utf8');
   challengeCard = await fs.readFile(path.join(__dirname,'../views/partials/challengeCard.handlebars'),'utf8');
+  hbs.registerPartial('challengeCard',challengeCard);
 })();
 
 /**
@@ -21,19 +23,21 @@ const updateChallengers = async (io,data,del) => {
   const targetConnections = await Connection.findAll({
     where:{
       user_id:data.target_id
-    }
+    },
+    include:[User]
   });
   const challengerConnections = await Connection.findAll({
     where:{
       user_id:data.challenger_id
-    }
+    },
+    include:[User]
   });
-  const challengeTemplate = hbs.compile(challengeCard)
+  const challengeTemplate = hbs.compile(socketPartial)
   const involved = [...targetConnections,...challengerConnections];
   for await(connection of involved){
     const active = io.sockets.sockets.get(connection.id)
     if(active){
-      active.emit('challengeUpdate',{delete:del,cardID:data.id,card:challengeTemplate(data.dataValues)});
+      active.emit('challengeUpdate',{delete:del,cardID:data.id,attackCreature:data.challenge_object,data,card:challengeTemplate({challenge:data.dataValues,user:connection.user})});
     }else{
       connection.destroy();
     }

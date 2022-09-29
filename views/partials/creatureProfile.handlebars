@@ -5,64 +5,7 @@
 <div id="creature-row" class="creature-row row">
     {{#if creature.length}}
     {{#each creature}}
-    <div class="w-400 mw-full col-sm">
-        <div class="card creatureCard">
-            <div class="cardHeaders d-inline-flex justify-content-around align-items-center">
-                <h3 class="card-title text-capitalize">
-                    {{ name }}
-                </h3>
-                {{!-- <h6>Type: {{ type }}</h6>
-                --}}
-                {{#if type}}
-                <img class="typeIcons {{ type }}" src="portraits/icons/{{ type }}.png" alt="{{ type }} icon">
-                {{/if}}
-            </div>
-            <div class="creature-img-container">
-                <img class="creature-img" src="{{ img }}" alt="">
-            </div>
-
-            <div id="creature-info">
-                <div id="type-levels">
-                    <div class="lvl-text">
-                        <p class="m-0">Rock Lvl: {{ rock_lvl }}
-                        </p>
-                    </div>
-                    <div>
-                        <div class="lvl-text">
-                            <p class="m-0">Paper Lvl: {{ paper_lvl }}
-                            </p>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="lvl-text">
-                            <p class="m-0">Scissor Lvl: {{ scissor_lvl }}
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="progress battery m-0">
-                    <div class="progress-bar bg-success" role="progressbar" aria-valuenow="{{ experience }}"
-                        aria-valuemin="0" aria-valuemax="{{ experience_threshold }}"></div>
-                </div>
-                {{#if is_charming}}
-                <div class="is-charming d-flex">
-                <h5>Status: Currently Engaged</h5>
-                {{!-- <img class="status-icon {{ is_charming }}" src="portraits/icons/true.png" alt="engaged"> --}}
-                </div>
-                {{else}}
-                <div class="is-charming d-flex justify-content-around">
-                <h5>Status: <span>Available</span> </h5>
-                {{!-- <img class="status-icon {{ is-charming }}" src="portraits/icons/false.png" alt="available"> --}}
-                <button class="d-flex btn p-5 align-self-center border-0" data-creature="{{ id }}" style="height:auto;">
-                    <img style="width:4.4rem;" src="portraits/icons/rock-paper-scissors.png" alt="Send to Charm">
-                </button>
-                </div>
-                {{/if}}
-
-            </div>
-        </div>
-
-    </div> <!-- creature column end-->
+    {{>creatureCard}}
     {{/each}}
     {{/if}}
 </div>

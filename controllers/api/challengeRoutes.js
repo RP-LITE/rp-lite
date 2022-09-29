@@ -1,25 +1,31 @@
 const router = require("express").Router();
 const { TimeoutError, Op } = require("sequelize");
 const { User, Challenges, UserObjects } = require("../../models");
-const hbs = require('../../utils/handlebarHelpers');
+const fs = require('fs/promises');
+const path = require('path');
+const hbs = require('handlebars');
 
 const helpers = require('./challengeHelpers');
-
+const hbHelpers = require('../../utils/helper');
+// Register the handlebar helpers
+Object.entries(hbHelpers).forEach(([k,f])=>hbs.registerHelper(k,f));
 let challengeModal;
+let defendModal;
 (async ()=>{
-  const challengeForm = await fs.readFile(path.join(__dirname,'./../views/partials/challengeForm.handlebars'),'utf8');
+  const challengeForm = await fs.readFile(path.join(__dirname,'../../views/partials/challengeForm.handlebars'),'utf8');
   challengeModal = hbs.compile(challengeForm);
-});
+  const defendForm = await fs.readFile(path.join(__dirname,'../../views/partials/defendForm.handlebars'),'utf8');
+  defendModal = hbs.compile(defendForm);
+})();
+
+// Add name search
 
 // Searches for users to challenge
-router.get('/search', async (req, res) => {
+router.get('/search/:creatureID', async (req, res) => {
   try {
-    const creatures = await UserObjects.findAll({
-      where:{
-        is_charming:false
-      },
-      raw:true
-    });
+    const creature = await UserObjects.findByPk(req.params.creatureID);
+    if(creature.user_id !== req.session.user_id) return res.status(500).json('Invalid creature');
+    console.log('====== challengeModal ======',challengeModal);
     const users = await User.findAll({
       where: {
         id: {
@@ -30,12 +36,24 @@ router.get('/search', async (req, res) => {
         exclude: ['password', 'email']
       }
     });
-    res.send(challengeModal({creatures,users}));
+    console.log('===== creature.id',creature.id);
+    res.send(challengeModal({creatureID:creature.id,users}));
   } catch (err) {
     console.log(err);
     res.json(err.message);
   }
-})
+});
+
+router.get('/defend/:challengeID',async (req,res)=>{
+  try{
+    const creatures = await UserObjects.findAll({where:{user_id:req.session.user_id,is_charming:false}});
+    res.send(defendModal({ challengeID:req.params.challengeID, creatures }))
+  }catch(err){
+    console.log(err);
+    res.status(500).json(err.message);
+  }
+});
+
 // Gets `all` challenges of the user, only those the user has `sent`, or only those the user has `received`.
 router.get('/:subset', async (req, res) => {
   // console.log(req.params.subset);
@@ -92,7 +110,9 @@ router.post('/', async (req, res) => {
   try {
     // put the data in a shorter variable name
     const data = req.body;
+    console.log('=====',data);
     const attacker = await UserObjects.findByPk(data.challenge_object);
+    if(!attacker) return res.status(500).json('Invalid Creature');
     if (attacker.user_id !== req.session.user_id) return res.status(500).json('Other user creature');
     if (attacker.is_charming) return res.status(500).json('Creature already assigned');
     attacker.is_charming = true;
@@ -110,21 +130,25 @@ router.post('/', async (req, res) => {
             {
               model: User,
               as: 'challenger',
-              attributes: { exclude: ['password', 'email'] }
+              attributes: { exclude: ['password', 'email'] },
+              raw:true
             },
             {
               model: User,
               as: 'target',
-              attributes: { exclude: ['password', 'email'] }
+              attributes: { exclude: ['password', 'email'] },
+              raw:true
             },
             {
               model: UserObjects,
-              as: 'attacker'
+              as: 'attacker',
+              raw:true
             }
           ]
         }
       )
       );
+    console.log('=====Challenge Issued',challenge);
     // update the challengers
     req.updateChallengers(challenge);
     // Respond to the client
@@ -176,10 +200,13 @@ router.put('/:id', async (req, res) => {
     challenge.set({ defender });
     await helpers.resolve(challenge);
     // Update the challenge data
-    await Promise.all([challenge.save(), challenge.attacker?.save(), challenge.defender?.save()]);
+    console.log('================');
+    console.log('====defender',challenge.defender.dataValues);
+    await Promise.all([challenge.attacker?.save(), challenge.defender?.save()]);
     // console.log('challenge',challenge);
     // update the challengers
-    req.updateChallengers(challenge);
+    req.updateChallengers(challenge, 'delete');
+    await challenge.destroy();
 
     // Respond to the client
     res.json(challenge);

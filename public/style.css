@@ -8,12 +8,16 @@
     --primary-color-yellow: #FFC05C;
     --primary-color-signin: #ff8500;
     --primary-color-signup: #ff9100;
-
+    --scissor-drop-shadow:drop-shadow(2px 1px 0px #000) drop-shadow(-1px -1px 0px #000) drop-shadow(-1px 2px 0px #000) drop-shadow(1px -1px 0px #000);
 }
 
 .body {
     background-color: var(--primary-color-blue);
     
+}
+
+.gap-1{
+    gap:0.5rem;
 }
 
 .battery {
@@ -22,6 +26,19 @@
     /* Before: 0.5rem (5px) */
     border-radius: 0.2rem;
     /* Before: 3.2rem (32px) */
+}
+
+.progress{
+    display: grid;
+    grid-template-areas: 'content';
+}
+
+.progress > *{
+    grid-area:content;
+}
+
+.progress > button:hover{
+    opacity:0.6;
 }
 
 .modal {
@@ -110,6 +127,32 @@
     font-family: 'Odibee Sans', cursive;
 }
 
+.content-overlay{
+    display:inline-grid;
+    grid-template-areas:'content';
+    place-items:center;
+}
+.content-overlay > *{
+    grid-area:content;
+    color:#fff;
+}
+
+.overlay {
+    font-size: 1.7rem;
+    font-weight: bold;
+}
+
+.overlay.paper{
+    color:#000;
+}
+
+.overlay.scissor{
+    font-weight:bold;
+}
+
+.content-overlay.scissor{
+    filter:var(--scissor-drop-shadow);
+}
 
 .challengeCard {
     border-color: rgb(77, 64, 64);
@@ -126,6 +169,30 @@
     border-width: 5px;
     background: linear-gradient(#B76E79, #e6dcad);
     padding: 5px;
+    display:grid;
+    grid-template-columns:45px 1fr;
+    grid-template-rows:auto auto;
+    grid-template-areas:
+        'img user'
+        'img creature';
+    gap:0.5rem;
+    align-items:start;
+}
+
+.challenge-content > img{
+    grid-area:img;
+    place-self:center;
+    width:100%;
+}
+
+.challenge-content > .user{
+    grid-area:user;
+    justify-self: start;
+}
+
+.challenge-content > .creature{
+    grid-area:creature;
+    justify-self: start;
 }
 
 .btn {
@@ -226,11 +293,9 @@
     transition: 0.5s;
 }
 
-
 .lvl-text {
     font-size: medium;
 }
-
 
 .sidebar-title {
     font-size:larger;
@@ -243,5 +308,5 @@
 }
 
 .typeIcons.scissor {
-    filter: drop-shadow(1px 1px 0px #000) drop-shadow(-1px -1px 0px #000) drop-shadow(-1px 1px 0px #000) drop-shadow(1px -1px 0px #000);
+    filter: var(--scissor-drop-shadow);
 }

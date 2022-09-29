@@ -1,30 +1,39 @@
-<div class="w-400 mw-full col-3">
+{{log '=======THIS======' this}}
+<div class="w-400 mw-full col-3" id="challenge-{{id}}">
   <div class="challengeCard">
-    <div id="challenge-{{id}}">
-      <h3 class="challenge-title">Incoming Challenger!</h3>
-      <div class="challenge-content">
-        {{!-- 
-          id: 18,
-          challenger_id: 39,
-          target_id: 5,
-          challenge_object: 55,
-          target_object: null,
-          winner: null
-         --}}
-        <div class="">
-          <p class="m-0">Challenger's Name: {{challenger_id}}</p>
-        </div>
-        <div class="">
-          <p class="m-0">Creature Name: {{challenge_object}}</p>
-        </div>
-        <div class="">
-          <p class="m-0">Creature Level: </p>
+    <h3 class="challenge-title">{{#if (isAttacker this @root.user)}}Outgoing{{else}}Incoming{{/if}} Challenge!</h3>
+    <div class="challenge-content">
+      {{!--
+      id: 18,
+      challenger_id: 39,
+      target_id: 5,
+      challenge_object: 55,
+      target_object: null,
+      winner: null
+      --}}
+      <img src="{{attacker.dataValues.img}}" alt="{{attacker.dataValues.name}}">
+      <div class="user">
+        {{#if (isAttacker this @root.user)}}
+        <p class="m-0">Target's Name: {{target.dataValues.user_name}}</p>
+        {{else}}
+        <p class="m-0">Challenger's Name: {{challenger.dataValues.user_name}}</p>
+        {{/if}}
+      </div>
+      <div class="creature d-flex">
+        <span class="m-0">{{attacker.dataValues.name}}</span>
+        <div class="content-overlay {{attacker.dataValues.type}}">
+          <img style="width:2.5rem;" src="portraits/icons/{{attacker.dataValues.type}}.png"
+            alt="{{attacker.dataValues.type}}" class="background  {{attacker.dataValues.type}}">
+          <span class="overlay {{attacker.dataValues.type}}">{{typeLevel attacker.dataValues}}</span>
         </div>
       </div>
-      <div class="text-center">
-
-        <a href="#" class="btn">Prove your Charm!</a>
-      </div>
+    </div>
+    <div class="text-center">
+      {{#if (isAttacker this @root.user)}}
+        <button class="btn recall" data-challenge="{{ id }}">Call your pet!</button>
+      {{else}}
+        <button class="btn defend" data-challenge="{{ id }}">Prove your Charm!</button>
+      {{/if}}
     </div>
   </div>
 </div>
