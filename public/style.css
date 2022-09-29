@@ -13,14 +13,33 @@
 
 .body {
     background-color: var(--primary-color-blue);
-
+ 
 }
 
 .footer {
     background-color: var(--primary-color-dark);
-    color: var(--primary-color-blue)
-    
+    color: var(--primary-color-light);
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    font-family:'Press Start 2P', cursive;
+    font-size: small;
+}
 
+.footer:hover{
+    transition: height 4s;
+}
+
+.footerfont {
+    padding-left: 35px;
+    padding-right: 35px
+}
+.footerfont:hover {
+    color: var(--primary-color-white);
+    transition: 0.6s;
 }
 
 .gap-1{
