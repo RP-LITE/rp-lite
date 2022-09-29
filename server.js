@@ -44,7 +44,7 @@ const sessionMiddleware = session(sess);
 app.use(sessionMiddleware);
 
 // Create our server and io object. Io is probably not needed here, but it is returned in case we eventually do need it here.
-const { io, server } = createIoInterface(app,sessionMiddleware);
+const { io, server } = createIoInterface(app, sessionMiddleware);
 
 
 app.use(express.static('public'));

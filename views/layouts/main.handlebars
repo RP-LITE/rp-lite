@@ -11,8 +11,8 @@
 
   <!-- Halfmoon CSS -->
   <link href="https://cdn.jsdelivr.net/npm/halfmoon@1.1.1/css/halfmoon.min.css" rel="stylesheet" />
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Odibee+Sans&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Odibee+Sans&family=Press+Start+2P&display=swap" rel="stylesheet">
   <link href="./style.css" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.6.1.min.js"
     integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
@@ -61,17 +61,17 @@
       <div class="sidebar-menu">
         <h5 class="sidebar-title">RP-Lite</h5>
         <div class="sidebar-divider"></div>
-        <button class="btn btn-block sidebar-btn" type="button">
-        <a href="./" >
-          Home
+        <a href="./">
+          <button class="btn btn-block sidebar-btn" type="button">
+            Home
+          </button>
         </a>
-        </button> 
         {{#if logged_in}}
-        <button class="btn btn-block sidebar-btn" type="button">
-        <a href="./profile" >
-          Profile
+        <a href="./profile">
+          <button class="btn btn-block sidebar-btn logout-btn" type="button">
+            Profile
+          </button>
         </a>
-        </button>
         {{/if}}
         {{!-- <a href="./creatures.html" class="sidebar-link sidebar-link-with-icon">
           <span class="sidebar-icon text-white rounded-circle" style="background-color: var(--primary-color-yellow)">
@@ -84,20 +84,20 @@
         <div class="sidebar-divider"></div>
         <!-- Conditional logged in / logged out -->
         {{#if logged_in}}
-        <button class="btn btn-block sidebar-btn" type="button">
+        <button class="btn btn-block sidebar-btn logout-btn" type="button">
           Logout
         </button>
         {{else}}
-        <button class="btn btn-block sidebar-btn"type="button">
-          <a href="#modal-1" >
-          Sign In
-          </a>
-        </button>
-        <button class="btn btn-block sidebar-btn"type="button">
-          <a href="#modal-2" >
-          Sign Up
-          </a>
-        </button>
+        <a href="#modal-1">
+          <button class="btn btn-block sidebar-btn" type="button">
+            Sign In
+          </button>
+        </a>
+        <a href="#modal-2">
+          <button class="btn btn-block sidebar-btn" type="button">
+            Sign Up
+          </button>
+        </a>
         {{/if}}
       </div>
     </div>
