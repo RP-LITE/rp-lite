@@ -13,7 +13,7 @@
 
 .body {
     background-color: var(--primary-color-blue);
-    
+
 }
 
 .footer {
@@ -50,7 +50,7 @@
 
 .modal {
     background-image: linear-gradient(var(--primary-color-white), var(--primary-color-light));
-    font-family: Odibee Sans, cursive;    
+    font-family: Odibee Sans, cursive;
 }
 
 .modal-title {
@@ -71,7 +71,7 @@
     font-size: large;
     color: var(--primary-color-white);
     border-color: var(--primary-color-white);
-    border-radius: 2px;  
+    border-radius: 2px;
 
 }
 
@@ -97,7 +97,7 @@
 }
 
 .sidebar {
-    background: linear-gradient(var(--primary-color),var(--primary-color-blue));
+    background: linear-gradient(var(--primary-color), var(--primary-color-blue));
     font-family: 'Odibee Sans', cursive;
     font-size: large;
 }
@@ -108,8 +108,8 @@
 }
 
 .card-title {
-    margin-bottom:0;
-    align-self:center;
+    margin-bottom: 0;
+    align-self: center;
 }
 
 .creatureCard {
@@ -120,7 +120,7 @@
     padding: 5px;
 }
 
-.align-center{
+.align-center {
     align-items: cen;
 }
 
@@ -130,7 +130,7 @@
     margin: 0;
 }
 
-.content-title{
+.content-title {
     font-family: 'Odibee Sans', cursive;
 }
 
@@ -204,12 +204,12 @@
 
 .btn {
     font-family: 'Odibee Sans', cursive;
-    background: linear-gradient(var(--primary-color-yellow),var(--primary-color-red));
+    background: linear-gradient(var(--primary-color-yellow), var(--primary-color-red));
     /* background: linear-gradient(#e6dcad, #B76E79); */
-    
+
 }
 
-.challenge-title{
+.challenge-title {
     font-family: 'Odibee Sans', cursive;
     text-align: center;
 }
@@ -230,18 +230,18 @@
     padding: .5em;
 }
 
-.creature-img-container{
-    width:100%;
+.creature-img-container {
+    width: 100%;
     aspect-ratio: 1 / 1;
-    display:grid;
-    grid-template-columns:1fr;
-    grid-template-areas:'content';
-    place-items:center;
-    overflow:hidden;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas: 'content';
+    place-items: center;
+    overflow: hidden;
     padding: 10px;
     /* border-width: 10px;
     border: black; */
-    
+
 }
 
 #type-levels {
@@ -258,8 +258,8 @@
     font-family: 'Odibee Sans', cursive;
 }
 
-.creature-img-container > *{
-    grid-area:content;
+.creature-img-container>* {
+    grid-area: content;
 }
 
 .creature-img {
@@ -272,10 +272,6 @@
     border: black;
 }
 
-/* .is-charming {
-    
-} */
-
 .status-icon {
     max-width: 25px;
     max-height: 30px;
@@ -287,7 +283,7 @@
     border-color: var(--primary-color-white);
     border-radius: 5px;
     border-width: 1px;
-    
+
 }
 
 .sidebar-btn:hover {
@@ -305,7 +301,7 @@
 }
 
 .sidebar-title {
-    font-size:larger;
+    font-size: larger;
     color: var(--primary-color-white);
 }
 
