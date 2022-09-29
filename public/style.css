@@ -8,13 +8,18 @@
     --primary-color-yellow: #FFC05C;
     --primary-color-signin: #ff8500;
     --primary-color-signup: #ff9100;
-    --scissor-drop-shadow:drop-shadow(2px 1px 0px #000) drop-shadow(-1px -1px 0px #000) drop-shadow(-1px 2px 0px #000) drop-shadow(1px -1px 0px #000);
+    --scissor-drop-shadow: drop-shadow(2px 1px 0px #000) drop-shadow(-1px -1px 0px #000) drop-shadow(-1px 2px 0px #000) drop-shadow(1px -1px 0px #000);
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 .body {
     background-color: var(--primary-color-blue);
- 
+
 }
+
 
 .footer {
     background-color: var(--primary-color-dark);
@@ -25,11 +30,11 @@
     width: 100%;
     height: 50px;
     text-align: center;
-    font-family:'Press Start 2P', cursive;
+    font-family: 'Press Start 2P', cursive;
     font-size: small;
 }
 
-.footer:hover{
+.footer:hover {
     transition: height 4s;
 }
 
@@ -37,13 +42,14 @@
     padding-left: 35px;
     padding-right: 35px
 }
+
 .footerfont:hover {
     color: var(--primary-color-white);
     transition: 0.6s;
 }
 
-.gap-1{
-    gap:0.5rem;
+.gap-1 {
+    gap: 0.5rem;
 }
 
 .battery {
@@ -54,17 +60,17 @@
     /* Before: 3.2rem (32px) */
 }
 
-.progress{
+.progress {
     display: grid;
     grid-template-areas: 'content';
 }
 
-.progress > *{
-    grid-area:content;
+.progress>* {
+    grid-area: content;
 }
 
-.progress > button:hover{
-    opacity:0.6;
+.progress>button:hover {
+    opacity: 0.6;
 }
 
 .modal {
@@ -153,14 +159,15 @@
     font-family: 'Odibee Sans', cursive;
 }
 
-.content-overlay{
-    display:inline-grid;
-    grid-template-areas:'content';
-    place-items:center;
+.content-overlay {
+    display: inline-grid;
+    grid-template-areas: 'content';
+    place-items: center;
 }
-.content-overlay > *{
-    grid-area:content;
-    color:#fff;
+
+.content-overlay>* {
+    grid-area: content;
+    color: #fff;
 }
 
 .overlay {
@@ -168,16 +175,16 @@
     font-weight: bold;
 }
 
-.overlay.paper{
-    color:#000;
+.overlay.paper {
+    color: #000;
 }
 
-.overlay.scissor{
-    font-weight:bold;
+.overlay.scissor {
+    font-weight: bold;
 }
 
-.content-overlay.scissor{
-    filter:var(--scissor-drop-shadow);
+.content-overlay.scissor {
+    filter: var(--scissor-drop-shadow);
 }
 
 .challengeCard {
@@ -195,29 +202,29 @@
     border-width: 5px;
     background: linear-gradient(#B76E79, #e6dcad);
     padding: 5px;
-    display:grid;
-    grid-template-columns:45px 1fr;
-    grid-template-rows:auto auto;
+    display: grid;
+    grid-template-columns: 45px 1fr;
+    grid-template-rows: auto auto;
     grid-template-areas:
         'img user'
         'img creature';
-    gap:0.5rem;
-    align-items:start;
+    gap: 0.5rem;
+    align-items: start;
 }
 
-.challenge-content > img{
-    grid-area:img;
-    place-self:center;
-    width:100%;
+.challenge-content>img {
+    grid-area: img;
+    place-self: center;
+    width: 100%;
 }
 
-.challenge-content > .user{
-    grid-area:user;
+.challenge-content>.user {
+    grid-area: user;
     justify-self: start;
 }
 
-.challenge-content > .creature{
-    grid-area:creature;
+.challenge-content>.creature {
+    grid-area: creature;
     justify-self: start;
 }
 
