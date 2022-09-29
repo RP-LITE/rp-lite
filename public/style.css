@@ -16,6 +16,13 @@
 
 }
 
+.footer {
+    background-color: var(--primary-color-dark);
+    color: var(--primary-color-blue)
+    
+
+}
+
 .gap-1{
     gap:0.5rem;
 }
