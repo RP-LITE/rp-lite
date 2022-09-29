@@ -1,0 +1,17 @@
+{{!-- File for the challenge form creation server side --}}
+{{#each creatures as |c|}}
+  {{#with dataValues as | creature |}}
+    <button class="btn target-select" data-challenge="{{ @root.challengeID }}" data-creature="{{ id }}">
+      <div class="d-inline-flex gap-1">
+        <div class="content-overlay {{type}}">
+          <img style="width:2.5rem;" src="portraits/icons/{{type}}.png"
+            alt="{{type}}" class="background  {{type}}">
+          <span class="overlay {{type}}">{{typeLevel this}}</span>
+        </div>
+        <h3 class="card-title">
+            {{ name }}
+        </h3>
+      </div>
+    </button>
+  {{/with}}
+{{/each}}

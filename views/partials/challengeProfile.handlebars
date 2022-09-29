@@ -7,23 +7,16 @@
     {{!-- {{#each challenges as | challenge}} --}}
     <div class="challenge-row row"  id="challenge-list">
     {{#each target}}
-    {{#with dataValues}}
-    {{>challengeCard}}
+    {{#with dataValues as |def|}}
+    {{>challengeCard this}}
     {{/with}}
     {{/each}}
-    {{#each challenger as | origChal |}}
-    {{#with dataValues as | challenge |}}
-    {{>challengeCard}}
+    {{#each challenger as |challenge|}}
+    {{#with dataValues as |atk|}}
+    {{>challengeCard this}}
     {{/with}}
     {{/each}}
     </div>
-    {{#unless target}}
-    {{#unless challenger}}
-       <p>
-        <button class="btn" id="start-challenge">Challenge Someone to a Charm Off!</button>
-        </p>
-    {{/unless}}
-    {{/unless}}
 </div>
 {{!-- {{/each}} --}}
 {{!-- {{else}} --}}

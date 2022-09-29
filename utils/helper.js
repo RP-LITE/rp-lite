@@ -13,4 +13,9 @@ const scissor = () => uniqueNamesGenerator({
   separator:"dau"
 });
 
-module.exports = { names:{rock,paper,scissor} };
+// Handlebar Helpers
+const typeLevel = (creature)=>creature[`${creature.type}_lvl`];
+
+const isAttacker = (challenge,user)=> challenge.challenger_id === user.dataValues.id;
+
+module.exports = { names:{rock,paper,scissor},typeLevel,isAttacker };
