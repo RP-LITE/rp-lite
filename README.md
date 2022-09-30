@@ -132,4 +132,4 @@ This readme template adapted from the [Best-README-Template](https://github.com/
 [stars-url]: https://github.com/RP-LITE/rp-lite/stargazers
 [issues-shield]: https://img.shields.io/github/issues/RP-LITE/rp-lite.svg?style=flat
 [issues-url]: https://github.com/RP-LITE/rp-lite/issues
-[product-screenshot]: assets/images/screenshot.png
+[product-screenshot]: [rplite herokuapp com_profile](https://user-images.githubusercontent.com/104692375/193175408-6f74e44e-92af-4d1d-b090-3478301d37fc.png)
